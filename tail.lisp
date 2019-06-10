@@ -1,6 +1,9 @@
 ;; do not create backup files
 (setq make-backup-files nil)
 
+;; display time
+(display-time-mode 1)
+
 ;; snippets
 ;; install yasnipet before: M-x package-install 
 ;; (add-to-list 'load-path
@@ -74,6 +77,5 @@
 (add-hook 'go-mode-hook 'hs-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; nav
-(global-set-key [f9] 'nav-toggle)
-(put 'upcase-region 'disabled nil)
+;; neotree
+(global-set-key [f9] 'neotree-toggle)
