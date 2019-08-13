@@ -76,14 +76,27 @@
 
 ;; python
 (defun my-python-hook ()
+  (require 'hl-fill-column)
+  (require 'flycheck)
+  (require 'company-jedi)
+
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+
+  (setq elpy-rpc-python-command "python3")
+  (global-set-key (kbd "C-c d") 'elpy-goto-definition)
+
+  (lambda ()
+    (set (make-local-variable 'company-backends) '(company-jedi))
+    (company-mode))
+  
   (elpy-mode)
-  (outline-minor-mode))
+  (outline-minor-mode)
+  (linum-mode)
+  (flycheck-mode)
+  (fci-mode))
 
 (add-hook 'python-mode-hook 'my-python-hook)
-(add-hook 'python-mode-hook 'linum-mode)
-
-(setq elpy-rpc-python-command "python3")
-(global-set-key (kbd "C-c d") 'elpy-goto-definition)
 
 
 ;; go
