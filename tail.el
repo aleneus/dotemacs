@@ -4,18 +4,11 @@
 ;; display time
 (display-time-mode 1)
 
-;; snippets
-;; install yasnipet before: M-x package-install 
-;; (add-to-list 'load-path
-;;               "~/.emacs.d/plugins/yasnippet")
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
-
-;; load hs-minor-mode in python-mode automatically
-;(add-hook 'python-mode-hook 'hs-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; load emacs 24's package system. Add MELPA repository.
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -24,14 +17,10 @@
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keys
-;; (global-set-key (kbd "C-j") 'backward-char)
-;; (global-set-key (kbd "C-l") 'forward-char)
-;; (global-set-key (kbd "C-k") 'forward-line)
-;; (global-set-key (kbd "C-i") 'previous-line)
-;; (global-set-key (kbd "C-M-l") 'forward-word)
-;; (global-set-key (kbd "C-M-j") 'backward-word)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-'") 'comment-region)
 (global-set-key (kbd "C-M-'") 'uncomment-region)
@@ -46,7 +35,45 @@
 (global-set-key [f5] 'bookmark-set)
 (global-set-key [f6] 'bookmark-jump)
 
+;; translate
+(require 'google-translate)
+(global-set-key (kbd "C-c g") 'google-translate-at-point)
+
+;; spell checking
+(global-set-key
+ (kbd "C-c l e")
+ (lambda()
+   (interactive)
+   (ispell-change-dictionary "english")))
+
+(global-set-key
+ (kbd "C-c l r")
+ (lambda ()
+   (interactive)
+   (ispell-change-dictionary "russian")))
+
+;; navigarion
+(require 'neotree)
+(global-set-key [f9] 'neotree-toggle)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; highlighting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; current line
+(global-hl-line-mode 1)
+(set-face-background 'highlight "#222")
+(set-face-foreground 'highlight nil)
+;; brackets
+(show-paren-mode 1)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; different modes settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;; python
 (defun my-python-hook ()
   (elpy-mode)
@@ -55,12 +82,10 @@
 (add-hook 'python-mode-hook 'my-python-hook)
 (add-hook 'python-mode-hook 'linum-mode)
 
-;; elpy settings
 (setq elpy-rpc-python-command "python3")
 (global-set-key (kbd "C-c d") 'elpy-goto-definition)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; go
 (defun my-go-hook ()
   (require 'company)
@@ -86,15 +111,14 @@
 (add-hook 'go-mode-hook 'yas-minor-mode)
 (add-hook 'go-mode-hook 'hs-minor-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; neotree
-(global-set-key [f9] 'neotree-toggle)
+;; latex
+(require 'auctex)
+(require 'company-auctex)
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; highlights
-;; current line
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#222")
-(set-face-foreground 'highlight nil)
-;; brackets
-(show-paren-mode 1)
+(defun my-latex-hook ()
+  (setq TeX-parse-self t)
+  (visual-line-mode)
+  (flyspell-mode 1))
+
+(add-hook 'LaTeX-mode-hook 'my-latex-hook)
