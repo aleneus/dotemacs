@@ -73,6 +73,18 @@
 ;; different modes settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; c
+(defun my-c-hook ()
+  (require 'hl-fill-column)
+
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t)
+
+  (linum-mode)
+  (fci-mode))
+
+(add-hook 'c-mode-hook 'my-c-hook)
 
 ;; python
 (defun my-python-hook ()
@@ -97,7 +109,6 @@
   (fci-mode))
 
 (add-hook 'python-mode-hook 'my-python-hook)
-
 
 ;; go
 (defun my-go-hook ()
