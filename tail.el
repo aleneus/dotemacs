@@ -89,10 +89,10 @@
 ;; go
 (defun my-go-hook ()
   (require 'company)
+  (require 'company-go)
   (require 'flycheck)
   (require 'yasnippet)
-  ;; (require 'go-eldoc)
-  (require 'company-go)
+  (require 'hl-fill-column)
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
@@ -100,16 +100,17 @@
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   (global-set-key [C-tab] (quote company-go))
-)
+
+  (flycheck-mode)
+  (linum-mode)
+  (lambda ()
+    (set (make-local-variable 'company-backends) '(company-go))
+    (company-mode))
+  (yas-minor-mode)
+  (hs-minor-mode)
+  (fci-mode))
 
 (add-hook 'go-mode-hook 'my-go-hook)
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook 'linum-mode)
-(add-hook 'go-mode-hook (lambda ()
-                          (set (make-local-variable 'company-backends) '(company-go))
-                          (company-mode)))
-(add-hook 'go-mode-hook 'yas-minor-mode)
-(add-hook 'go-mode-hook 'hs-minor-mode)
 
 ;; latex
 (require 'auctex)
