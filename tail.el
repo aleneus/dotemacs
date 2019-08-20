@@ -111,20 +111,23 @@
   (require 'company-go)
   (require 'flycheck)
   (require 'yasnippet)
+  (require 'go-eldoc)
+  (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq gofmt-args (list "-s"))
   (add-hook 'before-save-hook 'gofmt-before-save)
 
-  (global-set-key [C-tab] (quote company-go))
+  ;; (global-set-key [C-tab] (quote company-go))
+  (global-set-key [f11] 'go-direx-switch-to-buffer)
 
   (flycheck-mode)
-  (lambda ()
-    (set (make-local-variable 'company-backends) '(company-go))
-    (company-mode))
+  (set (make-local-variable 'company-backends) '(company-go))
+  (company-mode)
   (yas-minor-mode)
-  (hs-minor-mode))
+  (hs-minor-mode)
+  (go-eldoc-setup))
 
 (add-hook 'go-mode-hook 'my-go-hook)
 
@@ -163,3 +166,26 @@
   (ispell-change-dictionary "english"))
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
+
+;; refactoring
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let ((region (buffer-substring-no-properties beg end)))
+      (dotimes (i arg)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point)))
+      (goto-char (+ origin (* (length region) arg) arg)))))
+
+(global-set-key [f12] 'duplicate-current-line-or-region)
