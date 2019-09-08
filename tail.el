@@ -64,7 +64,8 @@
 ;; common for programming modes
 (defun my-common-prog ()
   (require 'hl-fill-column)
-  (require 'flyspell)
+  (require 'fill-column-indicator)
+  ;; (require 'flyspell)
   
   (linum-mode)
   (fci-mode)
@@ -104,15 +105,30 @@
 (add-hook 'python-mode-hook 'my-python-hook)
 
 ;; go
+(require 'go-mode)
+;; based on:
+;; http://reangdblog.blogspot.com/2016/06/emacs-ide-go.html
+
 (defun my-go-hook ()
   (my-common-prog)
+
+  ;; export PATH=$PATH:$(go env GOPATH)/bin
+  ;; sudo go get -u github.com/nsf/gocode
+  ;; sudo go get -u github.com/rogpeppe/godef
+  ;; sudo go get -u golang.org/x/tools/cmd/guru
+  ;; sudo go get -u golang.org/x/tools/cmd/gorename
+  ;; sudo go get -u golang.org/x/tools/cmd/goimports
   
   (require 'company)
   (require 'company-go)
   (require 'flycheck)
+  (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
+                                    ;; go get -u github.com/kisielk/errcheck
   (require 'yasnippet)
-  (require 'go-eldoc)
+  (require 'go-snippets)
+  (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
   (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
+  (require 'godoctor) ;; go get github.com/godoctor/godoctor
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
