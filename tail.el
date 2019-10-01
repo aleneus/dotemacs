@@ -119,28 +119,33 @@
   ;; sudo go get -u golang.org/x/tools/cmd/gorename
   ;; sudo go get -u golang.org/x/tools/cmd/goimports
   
-  (require 'company)
-  (require 'company-go)
-  (require 'flycheck)
-  (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
-                                    ;; go get -u github.com/kisielk/errcheck
-  (require 'yasnippet)
-  (require 'go-snippets)
-  (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
-  (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
-  (require 'godoctor) ;; go get github.com/godoctor/godoctor
-
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq gofmt-args (list "-s"))
   (add-hook 'before-save-hook 'gofmt-before-save)
 
+  (require 'gotest)
+  (global-set-key (kbd "C-c C-t") 'go-test-current-test)
+
+  (require 'company)
+  (require 'company-go)
+  (set (make-local-variable 'company-backends) '(company-go))
+  (company-mode)
+
+  (require 'flycheck)
+  (flycheck-mode)
+ 
+  (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
+                                    ;; go get -u github.com/kisielk/errcheck
+  ;; (require 'yasnippet)
+  ;; (require 'go-snippets)
+  (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
+  (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
+  (require 'godoctor) ;; go get github.com/godoctor/godoctor
+
   ;; (global-set-key [C-tab] (quote company-go))
   (global-set-key [f11] 'go-direx-switch-to-buffer)
 
-  (flycheck-mode)
-  (set (make-local-variable 'company-backends) '(company-go))
-  (company-mode)
   (yas-minor-mode)
   (hs-minor-mode)
   (go-eldoc-setup))
