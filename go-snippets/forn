@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: forn
+# key: forn
+# description: for with counter
+# --
+for ${1:var} := ${2:from}; $1 < ${3:to}; $1++ {
+
+}
