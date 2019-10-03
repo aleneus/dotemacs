@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Yusuke Tsutsumi <tsutsumi.yusuke@gmail.com>
+# name: gwt
+# key: gwt
+# description: add a test method
+# --
+// Given $1
+// When $2
+// Then $3
