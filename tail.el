@@ -137,8 +137,8 @@
  
   (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
                                     ;; go get -u github.com/kisielk/errcheck
-  ;; (require 'yasnippet)
-  ;; (require 'go-snippets)
+  (require 'yasnippet)
+  (require 'go-snippets)
   (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
   (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
   (require 'godoctor) ;; go get github.com/godoctor/godoctor
