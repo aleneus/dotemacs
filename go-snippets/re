@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Yusuke Tsutsumi <tsutsumi.yusuke@gmail.com>
+# name: re
+# key: re
+# description: if error is not nil return error
+# --
+if err != nil {
+   return err
+}

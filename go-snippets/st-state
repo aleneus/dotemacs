@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: state
-# key: state
+# name: st-state
+# key: st-state
 # description: add a structure with New and Init methods
 # --
 // $1State$2 represents the $2 state of $1

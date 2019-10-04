@@ -7,8 +7,8 @@
 
 // $3 ${4:doc}
 func (${1:x} *${2:StructName}) ${3:MethodName}() {
-     if j.state == nil {
+     if $1.state == nil {
           return
      }
-     return j.state.$3()
+     return $1.state.$3()
 }

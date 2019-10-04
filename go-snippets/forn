@@ -5,5 +5,5 @@
 # description: for with counter
 # --
 for ${1:var} := ${2:from}; $1 < ${3:to}; $1++ {
-
+    $0
 }

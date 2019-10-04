@@ -2,7 +2,7 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: st-context
 # key: st-context
-# description: add a structure with New and Init methods
+# description: context object for State pattern
 # --
 // $1State represents states of $1
 type $1State interface {
