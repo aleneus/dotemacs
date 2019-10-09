@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
-# contributer: Yusuke Tsutsumi <tsutsumi.yusuke@gmail.com>
+# contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: gwt
 # key: gwt
-# description: add a test method
+# description: add GWT comments
 # --
 // Given $1
 // When $2
