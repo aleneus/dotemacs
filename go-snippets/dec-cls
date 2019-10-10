@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: dec-cls
+# key: dec-cls
+# description: add decorator to function
+# --
+// $1 represents decorator for $2
+type ${1:Name} struct {
+	${3:x} *${2:What}
+}
+
+// New$1 creates new $1 and returns pointer to it
+func New$1() (${4:y} *$1, err error) {
+	$4 = new($1)
+	return $4, $4.Init()
+}
+
+// Init $1
+func ($4 *$1) Init() (err error) {
+	$4.$3, err = New$2()
+	return err
+}

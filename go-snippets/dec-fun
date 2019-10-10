@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: dec-fun
+# key: dec-fun
+# description: add decorator to function
+# --
+// $1 ${5:something}
+func ${1:DecorName}(f func(${2:args}) ${3:returns}) func($2) $3 {
+	return func($2) $3 {
+		// TODO: put code here $0
+		f()
+		// TODO: and here
+		return
+	}
+}
