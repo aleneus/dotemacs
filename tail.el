@@ -17,6 +17,9 @@
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
 
+;; uncomment next line if problem with GPG
+;; (setq package-check-signature nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keys
