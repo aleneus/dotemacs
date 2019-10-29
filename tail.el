@@ -64,17 +64,21 @@
 ;; different modes settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;; common for programming modes
 (defun my-common-prog ()
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+
   (require 'hl-fill-column)
   (require 'fill-column-indicator)
   ;; (require 'flyspell)
-  
+
   (linum-mode)
   (fci-mode)
   (flyspell-prog-mode))
 
-;; c
+
+;; c-mode
 (defun my-c-hook ()
   (my-common-prog)
   (setq tab-width 4)
@@ -83,9 +87,11 @@
 
 (add-hook 'c-mode-hook 'my-c-hook)
 
-;; python
+
+;; python-mode
 (defun my-python-hook ()
   (my-common-prog)
+
   (require 'flycheck)
   (require 'company-jedi)
 
@@ -107,7 +113,8 @@
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
-;; go
+
+;; go-mode
 (require 'go-mode)
 ;; based on:
 ;; http://reangdblog.blogspot.com/2016/06/emacs-ide-go.html
@@ -121,7 +128,7 @@
   ;; sudo go get -u golang.org/x/tools/cmd/guru
   ;; sudo go get -u golang.org/x/tools/cmd/gorename
   ;; sudo go get -u golang.org/x/tools/cmd/goimports
-  
+
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq gofmt-args (list "-s"))
@@ -137,9 +144,9 @@
 
   (require 'flycheck)
   (flycheck-mode)
- 
+
   (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
-                                    ;; go get -u github.com/kisielk/errcheck
+				    ;; go get -u github.com/kisielk/errcheck
   (require 'yasnippet)
   (require 'go-snippets)
   (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
@@ -155,7 +162,16 @@
 
 (add-hook 'go-mode-hook 'my-go-hook)
 
-;; latex
+
+;; emacs-lisp-mode
+(defun my-emacs-lisp-hook ()
+  (my-common-prog)
+)
+
+(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
+
+
+;; latex-mode
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
 (defun my-latex-hook ()
@@ -167,6 +183,7 @@
   (flyspell-mode))
 
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
+
 
 ;; flyspell
 (defun my-flyspell-hook ()
@@ -185,31 +202,33 @@
 
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
 
+
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
   (ispell-change-dictionary "english"))
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
 
+
 ;; refactoring
 (defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated. However, if
-there's a region, all lines that region covers will be duplicated."
+  "Duplicates the current line or region ARG times.  If there's no
+region, the current line will be duplicated. However, if there's a
+region, all lines that region covers will be duplicated."
   (interactive "p")
   (let (beg end (origin (point)))
     (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
+	(exchange-point-and-mark))
     (setq beg (line-beginning-position))
     (if mark-active
-        (exchange-point-and-mark))
+	(exchange-point-and-mark))
     (setq end (line-end-position))
     (let ((region (buffer-substring-no-properties beg end)))
       (dotimes (i arg)
-        (goto-char end)
-        (newline)
-        (insert region)
-        (setq end (point)))
+	(goto-char end)
+	(newline)
+	(insert region)
+	(setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
 (global-set-key [f12] 'duplicate-current-line-or-region)
