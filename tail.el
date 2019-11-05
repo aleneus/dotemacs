@@ -144,6 +144,7 @@
 
   (require 'flycheck)
   (flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(go-vet))
 
   (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
 				    ;; go get -u github.com/kisielk/errcheck
@@ -161,13 +162,6 @@
   (go-eldoc-setup))
 
 (add-hook 'go-mode-hook 'my-go-hook)
-
-;; disable go vet
-(add-hook
- 'go-mode-hook
- (lambda()
-   (interactive)
-   (flycheck-desable-checker "go-vet")))
 
 
 ;; emacs-lisp-mode
