@@ -162,6 +162,13 @@
 
 (add-hook 'go-mode-hook 'my-go-hook)
 
+;; disable go vet
+(add-hook
+ 'go-mode-hook
+ (lambda()
+   (interactive)
+   (flycheck-desable-checker "go-vet")))
+
 
 ;; emacs-lisp-mode
 (defun my-emacs-lisp-hook ()
