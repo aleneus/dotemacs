@@ -162,6 +162,7 @@
   (go-eldoc-setup))
 
 (add-hook 'go-mode-hook 'my-go-hook)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 
 ;; emacs-lisp-mode
@@ -210,26 +211,11 @@
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
 
-
-;; refactoring
-(defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.  If there's no
-region, the current line will be duplicated. However, if there's a
-region, all lines that region covers will be duplicated."
-  (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-	(exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-	(exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let ((region (buffer-substring-no-properties beg end)))
-      (dotimes (i arg)
-	(goto-char end)
-	(newline)
-	(insert region)
-	(setq end (point)))
-      (goto-char (+ origin (* (length region) arg) arg)))))
-
-(global-set-key [f12] 'duplicate-current-line-or-region)
+;; umlauts
+(define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
+(define-key key-translation-map (kbd "<f8> U") (kbd "Ü"))
+(define-key key-translation-map (kbd "<f8> o") (kbd "ö"))
+(define-key key-translation-map (kbd "<f8> O") (kbd "Ö"))
+(define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
+(define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
+(define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
