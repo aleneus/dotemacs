@@ -135,7 +135,8 @@
   (add-hook 'before-save-hook 'gofmt-before-save)
 
   (require 'gotest)
-  (global-set-key (kbd "C-c C-t") 'go-test-current-test)
+  (global-set-key (kbd "C-c t") 'go-test-current-test)
+  (global-set-key (kbd "C-c f") 'go-test-current-file)
 
   (require 'company)
   (require 'company-go)
