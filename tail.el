@@ -25,6 +25,9 @@
 ;; keys
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; replace-string
+(global-set-key (kbd "C-h") 'replace-string)
+
 (global-set-key (kbd "C-'") 'comment-region)
 (global-set-key (kbd "C-M-'") 'uncomment-region)
 
