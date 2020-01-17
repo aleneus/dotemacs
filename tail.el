@@ -1,3 +1,17 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; common
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; fonts
+(custom-set-faces
+ '(default ((t (:family "Ubuntu Mono" :slant normal :weight normal :height 200))))
+
+ ;; neotree
+ '(neo-dir-link-face ((t (:foreground "#73d216" :slant normal :weight bold :height 120 :family "Ubuntu Mono"))))
+ '(neo-file-link-face ((t (:foreground "#eeeeec" :weight normal :height 120 :family "Ubuntu Mono"))))
+ '(neo-root-dir-face ((t (:foreground "#eeeeec" :weight bold :height 120 :family " Ubuntu Mono")))))
+
 ;; do not create backup files
 (setq make-backup-files nil)
 
@@ -5,7 +19,7 @@
 (display-time-mode 1)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -45,9 +59,12 @@
 (require 'google-translate)
 (global-set-key (kbd "C-c g") 'google-translate-at-point)
 
-;; navigarion
+;; file navigation
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
+(setq neo-window-width 20)
+;; uncomment next line to make window width changeable
+;; (setq neo-window-fixed-size nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -223,3 +240,4 @@
 (define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
 (define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
 (define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
+
