@@ -18,6 +18,10 @@
 ;; display time
 (display-time-mode 1)
 
+;; popwin
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
@@ -166,17 +170,20 @@
   (require 'flycheck)
   (flycheck-mode)
   (setq-default flycheck-disabled-checkers '(go-vet))
-
   (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
 				    ;; go get -u github.com/kisielk/errcheck
   (require 'yasnippet)
   (require 'go-snippets)
   (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
+
   (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
-  (require 'godoctor) ;; go get github.com/godoctor/godoctor
+  (define-key go-mode-map [f11] 'go-direx-pop-to-buffer)
+  (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
+	popwin:special-display-config)
 
   ;; (global-set-key [C-tab] (quote company-go))
-  (global-set-key [f11] 'go-direx-switch-to-buffer)
+
+  (require 'godoctor) ;; go get github.com/godoctor/godoctor
 
   (yas-minor-mode)
   (hs-minor-mode)
