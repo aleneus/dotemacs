@@ -105,6 +105,10 @@
 (defun my-python-hook ()
   (my-common-prog)
 
+  ;; code navigation
+  (push '("*Occur*" :regexp t :position right :width 0.4 :dedicated t :stick t)
+	popwin:special-display-config)
+
   (require 'flycheck)
   (require 'company-jedi)
 
