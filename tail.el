@@ -1,8 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; common
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ;; fonts
 (custom-set-faces
  '(default ((t (:family "Ubuntu Mono" :slant normal :weight normal :height 200))))
@@ -18,14 +13,8 @@
 ;; display time
 (display-time-mode 1)
 
-;; popwin
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; load emacs 24's package system. Add MELPA repository.
 (when (>= emacs-major-version 24)
@@ -35,13 +24,11 @@
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
 
-;; uncomment next line if problem with GPG
+;; uncomment next line if there is a problem with GPG
 ;; (setq package-check-signature nil)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keys
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; replace-string
 (global-set-key (kbd "C-h") 'replace-string)
@@ -71,9 +58,16 @@
 ;; (setq neo-window-fixed-size nil)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; popwin
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+
+;; buffer list
+(push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
+      popwin:special-display-config)
+
+
 ;; highlighting
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; current line
 (global-hl-line-mode 1)
@@ -82,11 +76,6 @@
 
 ;; brackets
 (show-paren-mode 1)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; different modes settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;; common for programming modes
@@ -215,7 +204,7 @@
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
 
-;; flyspell
+;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
   (global-set-key
@@ -238,6 +227,7 @@
   (ispell-change-dictionary "english"))
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
+
 
 ;; umlauts
 (define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
