@@ -25,7 +25,7 @@
    t))
 
 ;; uncomment next line if there is a problem with GPG
-;; (setq package-check-signature nil)
+(setq package-check-signature nil)
 
 
 ;; keys
@@ -140,11 +140,11 @@
   (my-common-prog)
 
   ;; export PATH=$PATH:$(go env GOPATH)/bin
-  ;; sudo go get -u github.com/nsf/gocode
-  ;; sudo go get -u github.com/rogpeppe/godef
-  ;; sudo go get -u golang.org/x/tools/cmd/guru
-  ;; sudo go get -u golang.org/x/tools/cmd/gorename
-  ;; sudo go get -u golang.org/x/tools/cmd/goimports
+  ;; go get -u -v github.com/nsf/gocode
+  ;; go get -u -v github.com/rogpeppe/godef
+  ;; go get -u -v golang.org/x/tools/cmd/guru
+  ;; go get -u -v golang.org/x/tools/cmd/gorename
+  ;; go get -u -v golang.org/x/tools/cmd/goimports
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
@@ -163,20 +163,20 @@
   (require 'flycheck)
   (flycheck-mode)
   (setq-default flycheck-disabled-checkers '(go-vet))
-  (require 'flycheck-golangci-lint) ;; go get -u golang.org/x/lint/golint
-				    ;; go get -u github.com/kisielk/errcheck
+  (require 'flycheck-golangci-lint) ;; go get -u -v golang.org/x/lint/golint
+				    ;; go get -u -v github.com/kisielk/errcheck
   (require 'yasnippet)
   (require 'go-snippets)
-  (require 'go-eldoc) ;; sudo go get -u golang.org/x/tools/cmd/godoc
+  (require 'go-eldoc) ;; sudo go get -u -v golang.org/x/tools/cmd/godoc
 
-  (require 'go-direx) ;; go get -u github.com/jstemmer/gotags
+  (require 'go-direx) ;; go get -u -v github.com/jstemmer/gotags
   (define-key go-mode-map [f11] 'go-direx-pop-to-buffer)
   (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
 	popwin:special-display-config)
 
   ;; (global-set-key [C-tab] (quote company-go))
 
-  (require 'godoctor) ;; go get github.com/godoctor/godoctor
+  (require 'godoctor) ;; go get -u -v github.com/godoctor/godoctor
 
   (yas-minor-mode)
   (hs-minor-mode)
@@ -241,4 +241,3 @@
 (define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
 (define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
 (define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
-
