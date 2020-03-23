@@ -208,6 +208,13 @@
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
 
+;; json-mode
+(defun my-json-hook ()
+  (setq indent-tabs-mode nil))
+
+(add-hook 'json-mode-hook 'my-json-hook)
+
+
 ;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
