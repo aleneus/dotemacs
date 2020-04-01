@@ -46,6 +46,9 @@
 (global-set-key [f5] 'bookmark-set)
 (global-set-key [f6] 'bookmark-jump)
 
+;; rgrep
+(global-set-key (kbd "C-x g") 'rgrep)
+
 ;; translate
 (require 'google-translate)
 (global-set-key (kbd "C-c g") 'google-translate-at-point)
@@ -213,6 +216,13 @@
   (setq indent-tabs-mode nil))
 
 (add-hook 'json-mode-hook 'my-json-hook)
+
+
+;; text-mode
+(defun my-text-hook ()
+  (setq indent-tabs-mode nil))
+
+(add-hook 'text-mode-hook 'my-text-hook)
 
 
 ;; common flyspell
