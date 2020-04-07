@@ -4,6 +4,6 @@
 # key: trun
 # description: add a t.Run() within test
 # --
-t.Run("${1:Name}", func(t *testing.T){
+t.Run("${1:Scenario}", func(t *testing.T){
 	$2
 })

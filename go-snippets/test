@@ -5,8 +5,9 @@
 # description: add a test method
 # --
 func Test${1:Feature}(t *testing.T) {
-	// Given $2
-	// When $3
-	// Then $4
+	// Feature: ${2:Details}
+	// Given $3
+	// When $4
+	// Then $5
 	$0
 }
