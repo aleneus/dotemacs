@@ -225,6 +225,14 @@
 (add-hook 'text-mode-hook 'my-text-hook)
 
 
+;; org-mode
+(defun my-org-hook ()
+  (global-set-key (kbd "C-c i") 'org-clock-in)
+  (global-set-key (kbd "C-c o") 'org-clock-out))
+
+(add-hook 'org-mode-hook 'my-org-hook)
+
+
 ;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
