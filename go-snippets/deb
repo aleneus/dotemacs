@@ -4,4 +4,4 @@
 # key: deb
 # description: debug log snippet
 # --
-log.Println("DEBUG: $1 =", $2)
+log.Println("DEBUG: $1 =", $2) // TODO: stash
