@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: deb
-# key: deb
+# name: d
+# key: d
 # description: debug log snippet
 # --
 log.Println("DEBUG: $1 =", $2) // TODO: stash
