@@ -134,6 +134,14 @@
 (add-hook 'python-mode-hook 'my-python-hook)
 
 
+;; java
+
+(defun my-java-hook ()
+  (my-common-prog))
+
+(add-hook 'java-mode-hook 'my-java-hook)
+
+
 ;; go-mode
 (require 'go-mode)
 ;; based on:
