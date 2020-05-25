@@ -137,7 +137,8 @@
 ;; java
 
 (defun my-java-hook ()
-  (my-common-prog))
+  (my-common-prog)
+  (hs-minor-mode))
 
 (add-hook 'java-mode-hook 'my-java-hook)
 
