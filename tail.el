@@ -1,17 +1,13 @@
 ;; fonts
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono" :slant normal :weight normal :height 200))))
-
- ;; neotree
  '(neo-dir-link-face ((t (:foreground "#73d216" :slant normal :weight bold :height 120 :family "Ubuntu Mono"))))
  '(neo-file-link-face ((t (:foreground "#eeeeec" :weight normal :height 120 :family "Ubuntu Mono"))))
  '(neo-root-dir-face ((t (:foreground "#eeeeec" :weight bold :height 120 :family " Ubuntu Mono")))))
-
-;; do not create backup files
-(setq make-backup-files nil)
-
-;; display time
-(display-time-mode 1)
 
 
 ;; packages
@@ -23,9 +19,27 @@
    'package-archives
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
-
 ;; uncomment next line if there is a problem with GPG
 (setq package-check-signature nil)
+
+
+;; backup files
+(setq make-backup-files nil)
+
+
+;; display time
+(display-time-mode 1)
+
+
+;; total lines number
+(global-total-lines-mode 1)
+
+(require 'total-lines)
+
+(defun total-lines-count ()
+  "Print the total number of lines"
+  (interactive)
+  (message "%d" total-lines))
 
 
 ;; keys
@@ -49,9 +63,6 @@
 ;; rgrep
 (global-set-key (kbd "C-x g") 'rgrep)
 
-;; translate
-(require 'google-translate)
-(global-set-key (kbd "C-c g") 'google-translate-at-point)
 
 ;; file navigation
 (require 'neotree)
@@ -81,16 +92,6 @@
 ;; brackets
 (show-paren-mode 1)
 
-
-;; total lines number
-(require 'total-lines)
-
-(defun total-lines-count ()
-  "Print the total number of lines"
-  (interactive)
-  (message "%d" total-lines))
-
-
 ;; common for programming modes
 (defun my-common-prog ()
   (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -101,8 +102,10 @@
 
   (linum-mode)
   (fci-mode)
-  (flyspell-prog-mode)
-  (total-lines-mode))
+  ;; REF
+  (flyspell-prog-mode))
+  ;; (flyspell-prog-mode)
+  ;; (total-lines-mode))
 
 
 ;; c-mode
@@ -146,7 +149,6 @@
 
 
 ;; java
-
 (defun my-java-hook ()
   (my-common-prog)
   (hs-minor-mode))
