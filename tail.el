@@ -57,6 +57,7 @@
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 (setq neo-window-width 20)
+;; (setq neo-smart-open t)
 ;; uncomment next line to make window width changeable
 ;; (setq neo-window-fixed-size nil)
 
@@ -81,6 +82,15 @@
 (show-paren-mode 1)
 
 
+;; total lines number
+(require 'total-lines)
+
+(defun total-lines-count ()
+  "Print the total number of lines"
+  (interactive)
+  (message "%d" total-lines))
+
+
 ;; common for programming modes
 (defun my-common-prog ()
   (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -91,7 +101,8 @@
 
   (linum-mode)
   (fci-mode)
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+  (total-lines-mode))
 
 
 ;; c-mode
