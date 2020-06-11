@@ -39,7 +39,13 @@
 (defun total-lines-count ()
   "Print the total number of lines"
   (interactive)
-  (message "%d" total-lines))
+  ;; REF
+  ;; (defvar-local ten_ps (/ total-lines 10))
+  ;; (defvar-local rest (- total-lines ten_ps))
+  ;;
+  (message "%d = %d + %d" total-lines rest ten_ps))
+
+(global-set-key (kbd "C-c C-t") 'total-lines-count)
 
 
 ;; keys
