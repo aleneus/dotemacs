@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: bp
+# key: bp
+# description: adds break point (imitation with panic)
+# --
+panic("break") // TODO: remove
