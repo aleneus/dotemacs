@@ -9,7 +9,7 @@
  '(neo-file-link-face ((t (:foreground "#eeeeec" :weight normal :height 120 :family "Ubuntu Mono"))))
  '(neo-root-dir-face ((t (:foreground "#eeeeec" :weight bold :height 120 :family " Ubuntu Mono")))))
 
-
+;;
 ;; packages
 
 ;; load emacs 24's package system. Add MELPA repository.
@@ -22,37 +22,27 @@
 ;; uncomment next line if there is a problem with GPG
 (setq package-check-signature nil)
 
-
-;; backup files
-(setq make-backup-files nil)
-
-
-;; display time
-(display-time-mode 1)
-
-
-;; total lines number
-(global-total-lines-mode 1)
-
+;;
+;; count lines
 (require 'total-lines)
+
+(global-total-lines-mode 1)
 
 (defun total-lines-count ()
   "Print the total number of lines"
   (interactive)
-  ;; (defvar-local ten_ps (/ total-lines 10))
-  ;; (defvar-local rest (- total-lines ten_ps))
-  ;;
-  ;; (message "%d = %d + %d" total-lines rest ten_ps))
   (message "%d" total-lines))
 
 (global-set-key (kbd "C-c C-t") 'total-lines-count)
 
 
+;;
 ;; keys
 
 ;; replace-string
 (global-set-key (kbd "C-h") 'replace-string)
 
+;; comments
 (global-set-key (kbd "C-'") 'comment-region)
 (global-set-key (kbd "C-M-'") 'uncomment-region)
 
@@ -62,13 +52,11 @@
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
-;; bookmarks
-(global-set-key [f5] 'bookmark-set)
-(global-set-key [f6] 'bookmark-jump)
-
 ;; rgrep
 (global-set-key (kbd "C-x g") 'rgrep)
 
+;; term
+(global-set-key (kbd "C-x t") 'term)
 
 ;; file navigation
 (require 'neotree)
@@ -87,7 +75,7 @@
 (push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
       popwin:special-display-config)
 
-
+;;
 ;; highlighting
 
 ;; current line
@@ -98,6 +86,22 @@
 ;; brackets
 (show-paren-mode 1)
 
+;;
+;; umlauts
+(define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
+(define-key key-translation-map (kbd "<f8> U") (kbd "Ü"))
+(define-key key-translation-map (kbd "<f8> o") (kbd "ö"))
+(define-key key-translation-map (kbd "<f8> O") (kbd "Ö"))
+(define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
+(define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
+(define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
+
+;;
+;; misc
+(setq make-backup-files nil)
+(display-time-mode 1)
+
+;;
 ;; common for programming modes
 (defun my-common-prog ()
   (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -108,12 +112,9 @@
 
   (linum-mode)
   (fci-mode)
-  ;; REF
   (flyspell-prog-mode))
-  ;; (flyspell-prog-mode)
-  ;; (total-lines-mode))
 
-
+;;
 ;; c-mode
 (defun my-c-hook ()
   (my-common-prog)
@@ -123,7 +124,7 @@
 
 (add-hook 'c-mode-hook 'my-c-hook)
 
-
+;;
 ;; python-mode
 (defun my-python-hook ()
   (my-common-prog)
@@ -153,7 +154,7 @@
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
-
+;;
 ;; java
 (defun my-java-hook ()
   (my-common-prog)
@@ -161,7 +162,7 @@
 
 (add-hook 'java-mode-hook 'my-java-hook)
 
-
+;;
 ;; go-mode
 (require 'go-mode)
 ;; based on:
@@ -216,7 +217,7 @@
 (add-hook 'go-mode-hook 'my-go-hook)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
-
+;;
 ;; emacs-lisp-mode
 (defun my-emacs-lisp-hook ()
   (my-common-prog)
@@ -224,7 +225,7 @@
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
 
-
+;;
 ;; latex-mode
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
@@ -238,21 +239,21 @@
 
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
-
+;;
 ;; json-mode
 (defun my-json-hook ()
   (setq indent-tabs-mode nil))
 
 (add-hook 'json-mode-hook 'my-json-hook)
 
-
+;;
 ;; text-mode
 (defun my-text-hook ()
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'my-text-hook)
 
-
+;;
 ;; org-mode
 (defun my-org-hook ()
   (global-set-key (kbd "C-c i") 'org-clock-in)
@@ -260,7 +261,7 @@
 
 (add-hook 'org-mode-hook 'my-org-hook)
 
-
+;;
 ;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
@@ -278,19 +279,9 @@
 
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
 
-
+;;
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
   (ispell-change-dictionary "english"))
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
-
-
-;; umlauts
-(define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
-(define-key key-translation-map (kbd "<f8> U") (kbd "Ü"))
-(define-key key-translation-map (kbd "<f8> o") (kbd "ö"))
-(define-key key-translation-map (kbd "<f8> O") (kbd "Ö"))
-(define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
-(define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
-(define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
