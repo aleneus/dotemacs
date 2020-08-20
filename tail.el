@@ -11,14 +11,9 @@
 
 ;;
 ;; packages
-
-;; load emacs 24's package system. Add MELPA repository.
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "http://melpa.milkbox.net/packages/")
-   t))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 ;; uncomment next line if there is a problem with GPG
 (setq package-check-signature nil)
 
