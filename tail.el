@@ -30,7 +30,6 @@
 
 (global-set-key (kbd "C-c C-t") 'total-lines-count)
 
-
 ;;
 ;; keys
 
@@ -61,11 +60,17 @@
 ;; uncomment next line to make window width changeable
 ;; (setq neo-window-fixed-size nil)
 
+;; macro
+(global-set-key [f3] 'kmacro-start-macro)
+(global-set-key [f4] 'kmacro-end-macro)
+(global-set-key [f5] 'call-last-kbd-macro)
 
+;;
 ;; popwin
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 
+;;
 ;; buffer list
 (push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
       popwin:special-display-config)
@@ -247,14 +252,6 @@
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'my-text-hook)
-
-;;
-;; org-mode
-(defun my-org-hook ()
-  (global-set-key (kbd "C-c i") 'org-clock-in)
-  (global-set-key (kbd "C-c o") 'org-clock-out))
-
-(add-hook 'org-mode-hook 'my-org-hook)
 
 ;;
 ;; common flyspell
