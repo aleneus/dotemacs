@@ -47,7 +47,7 @@
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
 ;; rgrep
-(global-set-key (kbd "C-x g") 'rgrep)
+(global-set-key (kbd "C-x C-g") 'rgrep)
 
 ;; term
 (global-set-key (kbd "C-x t") 'term)
