@@ -12,6 +12,7 @@
 ;;
 ;; packages
 (require 'package)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 ;; uncomment next line if there is a problem with GPG
@@ -54,6 +55,7 @@
 
 ;; file navigation
 (require 'neotree)
+
 (global-set-key [f9] 'neotree-toggle)
 (setq neo-window-width 20)
 ;; (setq neo-smart-open t)
@@ -68,6 +70,7 @@
 ;;
 ;; popwin
 (require 'popwin)
+
 (setq display-buffer-function 'popwin:display-buffer)
 
 ;;
@@ -103,13 +106,11 @@
 
 ;;
 ;; common for programming modes
+(require 'hl-fill-column)
+(require 'fill-column-indicator)
+
 (defun my-common-prog ()
   (add-hook 'before-save-hook 'whitespace-cleanup)
-
-  (require 'hl-fill-column)
-  (require 'fill-column-indicator)
-  ;; (require 'flyspell)
-
   (linum-mode)
   (fci-mode)
   (flyspell-prog-mode))
@@ -126,15 +127,15 @@
 
 ;;
 ;; python-mode
+(require 'flycheck)
+(require 'company-jedi)
+
 (defun my-python-hook ()
   (my-common-prog)
 
   ;; code navigation
   (push '("*Occur*" :regexp t :position right :width 0.4 :dedicated t :stick t)
 	popwin:special-display-config)
-
-  (require 'flycheck)
-  (require 'company-jedi)
 
   (setq tab-width 4)
   (setq indent-tabs-mode nil)
@@ -164,51 +165,56 @@
 
 ;;
 ;; go-mode
+(require 'company)
+(require 'company-go)
+(require 'flycheck)
+(require 'yasnippet)
+
 (require 'go-mode)
+(require 'gotest)
+(require 'flycheck-golangci-lint)
+(require 'go-snippets)
+(require 'go-eldoc)
+(require 'go-direx)
+(require 'godoctor)
+
 ;; based on:
 ;; http://reangdblog.blogspot.com/2016/06/emacs-ide-go.html
 
+;; export PATH=$PATH:$(go env GOPATH)/bin
+;; go get -u -v github.com/nsf/gocode
+;; go get -u -v github.com/rogpeppe/godef
+;; go get -u -v golang.org/x/tools/cmd/guru
+;; go get -u -v golang.org/x/tools/cmd/gorename
+;; go get -u -v golang.org/x/tools/cmd/goimports
+;; go get -u -v golang.org/x/lint/golint
+;; go get -u -v github.com/kisielk/errcheck
+;; go get -u -v github.com/jstemmer/gotags
+;; go get -u -v github.com/godoctor/godoctor
+;; sudo go get -u -v golang.org/x/tools/cmd/godoc
+
 (defun my-go-hook ()
   (my-common-prog)
-
-  ;; export PATH=$PATH:$(go env GOPATH)/bin
-  ;; go get -u -v github.com/nsf/gocode
-  ;; go get -u -v github.com/rogpeppe/godef
-  ;; go get -u -v golang.org/x/tools/cmd/guru
-  ;; go get -u -v golang.org/x/tools/cmd/gorename
-  ;; go get -u -v golang.org/x/tools/cmd/goimports
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq gofmt-args (list "-s"))
   (add-hook 'before-save-hook 'gofmt-before-save)
 
-  (require 'gotest)
   (global-set-key (kbd "C-c t") 'go-test-current-test)
   (global-set-key (kbd "C-c f") 'go-test-current-file)
 
-  (require 'company)
-  (require 'company-go)
   (set (make-local-variable 'company-backends) '(company-go))
   (company-mode)
 
-  (require 'flycheck)
   (flycheck-mode)
   (setq-default flycheck-disabled-checkers '(go-vet))
-  (require 'flycheck-golangci-lint) ;; go get -u -v golang.org/x/lint/golint
-				    ;; go get -u -v github.com/kisielk/errcheck
-  (require 'yasnippet)
-  (require 'go-snippets)
-  (require 'go-eldoc) ;; sudo go get -u -v golang.org/x/tools/cmd/godoc
 
-  (require 'go-direx) ;; go get -u -v github.com/jstemmer/gotags
   (define-key go-mode-map [f11] 'go-direx-pop-to-buffer)
   (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
 	popwin:special-display-config)
 
   ;; (global-set-key [C-tab] (quote company-go))
-
-  (require 'godoctor) ;; go get -u -v github.com/godoctor/godoctor
 
   (yas-minor-mode)
   (hs-minor-mode)
@@ -227,11 +233,11 @@
 
 ;;
 ;; latex-mode
+(require 'company-auctex)
+
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
 (defun my-latex-hook ()
-  (require 'company-auctex)
-
   (setq TeX-parse-self t)
   (visual-line-mode)
   (company-mode)
@@ -277,3 +283,13 @@
   (ispell-change-dictionary "english"))
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
+
+;;
+;; graphviz-dot-mode
+(require 'graphviz-dot-mode)
+
+(defun my-graphviz-dot-mode-hook ()
+  (message "point")
+  (setq graphviz-dot-indent-width 4))
+
+(add-hook 'graphviz-dot-mode-hook 'my-graphviz-dot-mode-hook)
