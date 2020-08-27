@@ -287,9 +287,14 @@
 ;;
 ;; graphviz-dot-mode
 (require 'graphviz-dot-mode)
-
 (defun my-graphviz-dot-mode-hook ()
-  (message "point")
   (setq graphviz-dot-indent-width 4))
 
 (add-hook 'graphviz-dot-mode-hook 'my-graphviz-dot-mode-hook)
+
+;;
+;; sh-mode
+(defun my-sh-mode-hook ()
+  (my-common-prog))
+
+(add-hook 'sh-mode-hook 'my-sh-mode-hook)
