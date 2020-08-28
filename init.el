@@ -1,3 +1,10 @@
+;; put this file to .emacs.d folder or better make link
+
+;; add custom file for customization interface
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory));;
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;;
 ;; fonts
 (custom-set-faces
