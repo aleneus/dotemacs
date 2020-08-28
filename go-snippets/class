@@ -2,7 +2,7 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: class
 # key: class
-# description: add a structure with New and Init methods
+# description: add a structure with New() function
 # --
 // $1 represents ${2:smth}
 type ${1:StructName} struct {

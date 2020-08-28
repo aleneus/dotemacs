@@ -2,7 +2,7 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: gwt
 # key: gwt
-# description: add GWT comments
+# description: add given-when-then comments
 # --
 // Given $1
 // When $2

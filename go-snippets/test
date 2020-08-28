@@ -2,12 +2,10 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: test {}
 # key: test
-# description: add a test method
+# description: test function
 # --
 func Test${1:Feature}(t *testing.T) {
 	// Feature: ${2:Details}
-	// Given $3
-	// When $4
-	// Then $5
+
 	$0
 }

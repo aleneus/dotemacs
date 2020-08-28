@@ -1,6 +1,6 @@
 * DONE feat: add alarm-clock and keys
 * DONE go-snippets: class: no init, do all in New()
-* TODO go-snippets: fix descriptions
+* DONE go-snippets: fix descriptions
 * TODO go-snippets: te: remove
 * TODO go-snippets: test: remove GWT from it
 * TODO go-snippets: trun: add GWT comments

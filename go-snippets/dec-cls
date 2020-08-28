@@ -2,7 +2,7 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: dec-cls
 # key: dec-cls
-# description: add decorator to function
+# description: add decorator for class
 # --
 // $1 represents decorator for $2
 type ${1:Name} struct {

@@ -2,6 +2,6 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: d
 # key: d
-# description: debug log snippet
+# description: add debug message to log
 # --
 log.Println("DEBUG: $1 =", $2) // TODO: stash
