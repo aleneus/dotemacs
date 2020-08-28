@@ -1,3 +1,4 @@
+* DONE feat: add alarm-clock and keys
 * TODO go-snippets: class: no init, do all in New()
 * TODO go-snippets: fix descriptions
 * TODO go-snippets: te: remove

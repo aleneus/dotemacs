@@ -295,3 +295,8 @@
   (my-common-prog))
 
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)
+
+;;
+;; alarm
+(require 'alarm-clock)
+(global-set-key (kbd "C-x C-a") 'alarm-clock-set)
