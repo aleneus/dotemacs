@@ -6,4 +6,5 @@
 * DONE go-snippets: te: remove
 * DONE init.el: feature mode and terminal toggle
 * DONE go-snippets: trun: add GWT comments
+* DONE terminal-toggle: change shell to bash
 * TODO init.el: replace font settings to custom.el

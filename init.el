@@ -316,4 +316,5 @@
 ;;
 ;; terminal
 (require 'terminal-toggle)
+(setq terminal-toggle--term-shell "/bin/bash")
 (global-set-key (kbd "C-x t") 'terminal-toggle)
