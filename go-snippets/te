@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: te
-# key: te
-# description: in testing, if error then fatal with it
-# --
-if err != nil {
-   t.Fatal(err)
-}

@@ -3,7 +3,7 @@
 * DONE go-snippets: fix descriptions
 * DONE tail.el: split to init.el and custom.el
 * DONE init.el: add markdown-mode
-* TODO go-snippets: te: remove
+* DONE go-snippets: te: remove
 * TODO init.el: replace fornt settings to custom.el
 * TODO go-snippets: test: remove GWT from it
 * TODO go-snippets: trun: add GWT comments
