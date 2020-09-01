@@ -5,5 +5,8 @@
 # description: add a t.Run() within test
 # --
 t.Run("${1:Scenario}", func(t *testing.T){
-	$2
+	// Given $2
+	// When $3
+	// Then $4
+	$5
 })
