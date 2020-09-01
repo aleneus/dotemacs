@@ -4,6 +4,7 @@
 * DONE tail.el: split to init.el and custom.el
 * DONE init.el: add markdown-mode
 * DONE go-snippets: te: remove
+* DONE init.el: feature mode and terminal toggle
 * TODO init.el: replace fornt settings to custom.el
 * TODO go-snippets: test: remove GWT from it
 * TODO go-snippets: trun: add GWT comments

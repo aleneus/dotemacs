@@ -54,9 +54,6 @@
 ;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
 
-;; term
-(global-set-key (kbd "C-x t") 'term)
-
 ;; file navigation
 (require 'neotree)
 
@@ -170,10 +167,10 @@
 ;;
 ;; go-mode
 (require 'company)
-(require 'company-go)
 (require 'flycheck)
 (require 'yasnippet)
 
+(require 'company-go)
 (require 'go-mode)
 (require 'gotest)
 (require 'flycheck-golangci-lint)
@@ -311,3 +308,12 @@
 ;;
 ;; makdown
 (require 'markdown-mode)
+
+;;
+;; feature-mode
+(require 'feature-mode)
+
+;;
+;; terminal
+(require 'terminal-toggle)
+(global-set-key (kbd "C-x t") 'terminal-toggle)
