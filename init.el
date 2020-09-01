@@ -307,3 +307,7 @@
 ;; alarm
 (require 'alarm-clock)
 (global-set-key (kbd "C-x C-a") 'alarm-clock-set)
+
+;;
+;; makdown
+(require 'markdown-mode)
