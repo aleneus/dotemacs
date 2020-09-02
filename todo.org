@@ -7,4 +7,5 @@
 * DONE init.el: feature mode and terminal toggle
 * DONE go-snippets: trun: add GWT comments
 * DONE terminal-toggle: change shell to bash
+* DONE markdown: switch on word wrapping
 * TODO init.el: replace font settings to custom.el
