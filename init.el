@@ -58,7 +58,7 @@
 (require 'neotree)
 
 (global-set-key [f9] 'neotree-toggle)
-(setq neo-window-width 20)
+(setq neo-window-width 21)
 ;; (setq neo-smart-open t)
 ;; uncomment next line to make window width changeable
 ;; (setq neo-window-fixed-size nil)
@@ -327,4 +327,17 @@
 ;; terminal
 (require 'terminal-toggle)
 (setq terminal-toggle--term-shell "/bin/bash")
-(global-set-key (kbd "C-x t") 'terminal-toggle)
+(setq terminal-toggle--term-title "myterm")
+
+(defun my-set-term-font ()
+  "Set font for terminal buffer"
+  (setq buffer-face-mode-face '(:height 180))
+  (buffer-face-mode))
+
+(defun my-terminal-toggle ()
+  "Toggle terminal window"
+  (interactive)
+  (terminal-toggle)
+  (when (string= (buffer-name) "*myterm*") (my-set-term-font)))
+
+(global-set-key (kbd "C-x t") 'my-terminal-toggle)
