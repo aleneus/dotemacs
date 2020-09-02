@@ -318,6 +318,11 @@
 ;; feature-mode
 (require 'feature-mode)
 
+(defun my-feature-mode-hook ()
+  (my-common-prog))
+
+(add-hook 'feature-mode-hook 'my-feature-mode-hook)
+
 ;;
 ;; terminal
 (require 'terminal-toggle)
