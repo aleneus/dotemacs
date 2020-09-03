@@ -129,7 +129,7 @@
 ;;
 ;; python-mode
 (require 'flycheck)
-(require 'company-jedi)
+(require 'elpy)
 
 (defun my-python-hook ()
   (my-common-prog)
@@ -150,6 +150,7 @@
 
   (setq flycheck-checker 'python-pylint)
 
+  (elpy-enable)
   (elpy-mode)
   (outline-minor-mode)
   (flycheck-mode))
