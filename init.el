@@ -316,6 +316,13 @@
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook)
 
 ;;
+;; restructured text
+(defun my-rst-mode-hook ()
+  (visual-line-mode))
+
+(add-hook 'rst-mode-hook 'my-rst-mode-hook)
+
+;;
 ;; feature-mode
 (require 'feature-mode)
 

@@ -10,4 +10,5 @@
 * DONE markdown: switch on word wrapping
 * DONE feature-mode: show line numbers
 * DONE popwin term: small font
+* DONE rst-mode: word wrapping: switch on
 * TODO init.el: replace font settings to custom.el
