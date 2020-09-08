@@ -11,4 +11,5 @@
 * DONE feature-mode: show line numbers
 * DONE popwin term: small font
 * DONE rst-mode: word wrapping: switch on
+* DONE python: add TODO and DEBUG snippets
 * TODO init.el: replace font settings to custom.el
