@@ -3,4 +3,4 @@
 # key: dv
 # group: Python 3
 # --
-print("DEBUG: $1", $1)  # TODO: stash
+print("DEBUG: $1 =", $1)  # TODO: stash

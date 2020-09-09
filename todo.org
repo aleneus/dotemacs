@@ -12,4 +12,6 @@
 * DONE popwin term: small font
 * DONE rst-mode: word wrapping: switch on
 * DONE python: add TODO and DEBUG snippets
+* DONE py-snippets: add : (TODO) and = (DEBUG)
+* TODO go-snippets: d -> dv, dh (see py-snippets)
 * TODO init.el: replace font settings to custom.el
