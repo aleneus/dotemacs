@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test feature
+# key: tf
+# group: Testing
+# --
+class Test${1:Feature}(unittest.TestCase):
+    def test_${2:scenario}(self):
+        $0

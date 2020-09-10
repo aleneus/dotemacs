@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test scenario
+# key: ts
+# group: Testing
+# --
+def test_${1:scenario}(self):
+    # TODO: implement
+    pass
