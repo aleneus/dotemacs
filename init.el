@@ -142,7 +142,6 @@
   (setq indent-tabs-mode nil)
 
   (setq elpy-rpc-python-command "python3")
-  (global-set-key (kbd "C-c d") 'elpy-goto-definition)
 
   (lambda ()
     (set (make-local-variable 'company-backends) '(company-jedi))
@@ -153,7 +152,9 @@
   (elpy-enable)
   (elpy-mode)
   (outline-minor-mode)
-  (flycheck-mode))
+  (flycheck-mode)
+
+  (global-set-key (kbd "C-c d") 'elpy-goto-definition))
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
@@ -205,6 +206,7 @@
 
   (global-set-key (kbd "C-c t") 'go-test-current-test)
   (global-set-key (kbd "C-c f") 'go-test-current-file)
+  (global-set-key (kbd "C-c d") 'godef-jump)
 
   (set (make-local-variable 'company-backends) '(company-go))
   (company-mode)
