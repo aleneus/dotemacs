@@ -351,3 +351,7 @@
   (when (string= (buffer-name) "*myterm*") (my-set-term-font)))
 
 (global-set-key (kbd "C-x t") 'my-terminal-toggle)
+
+;;
+;; json
+(require 'json-mode)

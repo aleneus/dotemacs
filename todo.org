@@ -15,5 +15,6 @@
 * DONE py-snippets: add : (TODO) and = (DEBUG)
 * DONE py-snippets: add snippets for writing unit tests
 * DONE init.el: go: jump to definition: C-c d
+* DONE init.el: require json-mode
 * TODO go-snippets: d -> dv, dh (see py-snippets)
 * TODO init.el: replace font settings to custom.el
