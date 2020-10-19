@@ -1,17 +1,12 @@
-;; put this file to .emacs.d folder or better make link
+;; put copy of this file to .emacs.d
+
+;; hide welcome screen
+(setq inhibit-splash-screen t)
 
 ;; add custom file for customization interface
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory));;
 (when (file-exists-p custom-file)
   (load custom-file))
-
-;;
-;; fonts
-(custom-set-faces
- '(default ((t (:family "Ubuntu Mono" :slant normal :weight normal :height 200))))
- '(neo-dir-link-face ((t (:foreground "#73d216" :slant normal :weight bold :height 120 :family "Ubuntu Mono"))))
- '(neo-file-link-face ((t (:foreground "#eeeeec" :weight normal :height 120 :family "Ubuntu Mono"))))
- '(neo-root-dir-face ((t (:foreground "#eeeeec" :weight bold :height 120 :family " Ubuntu Mono")))))
 
 ;;
 ;; packages
