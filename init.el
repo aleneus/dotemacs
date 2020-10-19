@@ -138,10 +138,6 @@
 
   (setq elpy-rpc-python-command "python3")
 
-  (lambda ()
-    (set (make-local-variable 'company-backends) '(company-jedi))
-    (company-mode))
-
   (setq flycheck-checker 'python-pylint)
 
   (elpy-enable)
@@ -149,7 +145,8 @@
   (outline-minor-mode)
   (flycheck-mode)
 
-  (global-set-key (kbd "C-c d") 'elpy-goto-definition))
+  (global-set-key (kbd "C-c d") 'elpy-goto-definition)
+  (jedi-mode))
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
