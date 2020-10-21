@@ -75,6 +75,11 @@
       popwin:special-display-config)
 
 ;;
+;; editing
+(require 'iedit)
+(global-set-key (kbd "C-:") 'iedit-mode)
+
+;;
 ;; highlighting
 
 ;; current line
