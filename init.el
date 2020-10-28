@@ -75,6 +75,10 @@
       popwin:special-display-config)
 
 ;;
+;; close-display-connection
+(global-set-key [f10] 'close-display-connection)
+
+;;
 ;; editing
 (require 'iedit)
 (global-set-key (kbd "C-:") 'iedit-mode)
