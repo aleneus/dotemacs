@@ -17,5 +17,5 @@
 * DONE init.el: go: jump to definition: C-c d
 * DONE init.el: require json-mode
 * DONE go-snippets: d -> dv, dh
-* TODO init.el: replace font settings to custom.el
-* TODO py-snippets: fix descriptions
+* DONE init.el: replace font settings to custom.el
+* DONE py-snippets: fix descriptions

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
-# name: TODO
+# name: t
 # key: t
 # group: Python 3
+# description: print TODO comment with tag
 # --
 # TODO ${1:tag}: $2

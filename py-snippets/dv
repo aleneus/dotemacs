@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
-# name: Debug print
+# name: dv
 # key: dv
 # group: Python 3
+# description: Debug print
 # --
 print("DEBUG: $1 =", $1)  # TODO: stash
