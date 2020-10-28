@@ -4,4 +4,4 @@
 # key: t
 # description: add TODO record
 # --
-// TODO: $0
+// TODO ${1:tag}: $0
