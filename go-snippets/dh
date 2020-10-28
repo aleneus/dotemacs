@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: dh
+# key: dh
+# description: print i'm here message
+# --
+log.Println("DEBUG: I'm here") // TODO: stash

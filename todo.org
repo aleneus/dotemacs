@@ -16,5 +16,6 @@
 * DONE py-snippets: add snippets for writing unit tests
 * DONE init.el: go: jump to definition: C-c d
 * DONE init.el: require json-mode
-* TODO go-snippets: d -> dv, dh (see py-snippets)
+* DONE go-snippets: d -> dv, dh
 * TODO init.el: replace font settings to custom.el
+* TODO py-snippets: fix descriptions
