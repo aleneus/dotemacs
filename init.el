@@ -1,5 +1,8 @@
 ;; put copy of this file to .emacs.d
 
+;; prefer spaces by default
+(setq-default indent-tabs-mode nil)
+
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
 
@@ -140,7 +143,7 @@
 
   ;; code navigation
   (push '("*Occur*" :regexp t :position right :width 0.4 :dedicated t :stick t)
-	popwin:special-display-config)
+        popwin:special-display-config)
 
   (setq tab-width 4)
   (setq indent-tabs-mode nil)
@@ -217,7 +220,7 @@
 
   (define-key go-mode-map [f11] 'go-direx-pop-to-buffer)
   (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
-	popwin:special-display-config)
+        popwin:special-display-config)
 
   ;; (global-set-key [C-tab] (quote company-go))
 
@@ -352,6 +355,17 @@
   (when (string= (buffer-name) "*myterm*") (my-set-term-font)))
 
 (global-set-key (kbd "C-x t") 'my-terminal-toggle)
+
+;;
+;; javascript-mode
+(defun my-javascript-hook ()
+  (my-common-prog)
+  (setq tab-width 8)
+  (setq javascript-indent-level 2)
+  (setq indent-tabs-mode nil)
+  )
+
+(add-hook 'javascript-mode-hook 'my-javascript-hook)
 
 ;;
 ;; json
