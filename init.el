@@ -7,11 +7,10 @@
 (setq inhibit-splash-screen t)
 
 ;; add custom file for customization interface
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory));;
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;;
 ;; packages
 (require 'package)
 
@@ -20,7 +19,6 @@
 ;; uncomment next line if there is a problem with GPG
 (setq package-check-signature nil)
 
-;;
 ;; count lines
 (require 'total-lines)
 
@@ -32,9 +30,6 @@
   (message "%d" total-lines))
 
 (global-set-key (kbd "C-c C-t") 'total-lines-count)
-
-;;
-;; keys
 
 ;; replace-string
 (global-set-key (kbd "C-h") 'replace-string)
@@ -66,13 +61,11 @@
 (global-set-key [f4] 'kmacro-end-macro)
 (global-set-key [f5] 'call-last-kbd-macro)
 
-;;
 ;; popwin
 (require 'popwin)
 
 (setq display-buffer-function 'popwin:display-buffer)
 
-;;
 ;; buffer list
 (push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
       popwin:special-display-config)
@@ -81,23 +74,13 @@
 ;; close-display-connection
 (global-set-key [f10] 'close-display-connection)
 
-;;
 ;; editing
 (require 'iedit)
 (global-set-key (kbd "C-:") 'iedit-mode)
 
-;;
-;; highlighting
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
 
-;; current line
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#222")
-(set-face-foreground 'highlight nil)
-
-;; brackets
-(show-paren-mode 1)
-
-;;
 ;; umlauts
 (define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
 (define-key key-translation-map (kbd "<f8> U") (kbd "Ü"))
@@ -107,12 +90,44 @@
 (define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
 (define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
 
-;;
-;; misc
+;; highlight current line
+(global-hl-line-mode 1)
+(set-face-background 'highlight "#222")
+(set-face-foreground 'highlight nil)
+
+;; highlight brackets
+(show-paren-mode 1)
+
+;; do not create backup files
 (setq make-backup-files nil)
+
+;; display time
 (display-time-mode 1)
 
+;; alarm
+(require 'alarm-clock)
+(global-set-key (kbd "C-x C-a") 'alarm-clock-set)
+
+;; common flyspell
+(defun my-flyspell-hook ()
+  ;; spell checking
+  (global-set-key
+   (kbd "C-c l e")
+   (lambda()
+     (interactive)
+     (ispell-change-dictionary "english")))
+
+  (global-set-key
+   (kbd "C-c l r")
+   (lambda ()
+     (interactive)
+     (ispell-change-dictionary "russian"))))
+
+(add-hook 'flyspell-mode-hook 'my-flyspell-hook)
+
 ;;
+;; different modes
+
 ;; common for programming modes
 (require 'hl-fill-column)
 (require 'fill-column-indicator)
@@ -123,7 +138,12 @@
   (fci-mode)
   (flyspell-prog-mode))
 
-;;
+;; flyspell-prog (for checking comments)
+(defun my-flyspell-prog-hook ()
+  (ispell-change-dictionary "english"))
+
+(add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
+
 ;; c-mode
 (defun my-c-hook ()
   (my-common-prog)
@@ -133,7 +153,6 @@
 
 (add-hook 'c-mode-hook 'my-c-hook)
 
-;;
 ;; python-mode
 (require 'flycheck)
 (require 'elpy)
@@ -162,15 +181,13 @@
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
-;;
-;; java
+;; java-mode
 (defun my-java-hook ()
   (my-common-prog)
   (hs-minor-mode))
 
 (add-hook 'java-mode-hook 'my-java-hook)
 
-;;
 ;; go-mode
 (require 'company)
 (require 'flycheck)
@@ -231,7 +248,6 @@
 (add-hook 'go-mode-hook 'my-go-hook)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
-;;
 ;; emacs-lisp-mode
 (defun my-emacs-lisp-hook ()
   (my-common-prog)
@@ -239,7 +255,6 @@
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
 
-;;
 ;; latex-mode
 (require 'company-auctex)
 
@@ -253,46 +268,18 @@
 
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
-;;
 ;; json-mode
 (defun my-json-hook ()
   (setq indent-tabs-mode nil))
 
 (add-hook 'json-mode-hook 'my-json-hook)
 
-;;
 ;; text-mode
 (defun my-text-hook ()
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'my-text-hook)
 
-;;
-;; common flyspell
-(defun my-flyspell-hook ()
-  ;; spell checking
-  (global-set-key
-   (kbd "C-c l e")
-   (lambda()
-     (interactive)
-     (ispell-change-dictionary "english")))
-
-  (global-set-key
-   (kbd "C-c l r")
-   (lambda ()
-     (interactive)
-     (ispell-change-dictionary "russian"))))
-
-(add-hook 'flyspell-mode-hook 'my-flyspell-hook)
-
-;;
-;; flyspell-prog (for checking comments)
-(defun my-flyspell-prog-hook ()
-  (ispell-change-dictionary "english"))
-
-(add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
-
-;;
 ;; graphviz-dot-mode
 (require 'graphviz-dot-mode)
 (defun my-graphviz-dot-mode-hook ()
@@ -300,20 +287,13 @@
 
 (add-hook 'graphviz-dot-mode-hook 'my-graphviz-dot-mode-hook)
 
-;;
 ;; sh-mode
 (defun my-sh-mode-hook ()
   (my-common-prog))
 
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)
 
-;;
-;; alarm
-(require 'alarm-clock)
-(global-set-key (kbd "C-x C-a") 'alarm-clock-set)
-
-;;
-;; makdown
+;; makdown-mode
 (require 'markdown-mode)
 
 (defun my-markdown-mode-hook ()
@@ -362,11 +342,10 @@
   (my-common-prog)
   (setq tab-width 8)
   (setq javascript-indent-level 2)
-  (setq indent-tabs-mode nil)
-  )
+  (setq indent-tabs-mode nil))
 
 (add-hook 'javascript-mode-hook 'my-javascript-hook)
 
 ;;
-;; json
+;; json-mode
 (require 'json-mode)
