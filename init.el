@@ -2,6 +2,11 @@
 
 ;; put copy of this file to .emacs.d
 
+;; split vertically
+(setq
+   split-width-threshold 0
+   split-height-threshold nil)
+
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
 
