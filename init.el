@@ -203,6 +203,9 @@
 
 ;; export PATH=$PATH:$(go env GOPATH)/bin
 
+;; NOTE: install them if having errors and remove excess
+
+;; go get golang.org/x/tools/gopls@latest
 ;; go get -u -v github.com/rogpeppe/godef
 ;; go get -u -v golang.org/x/tools/cmd/guru
 ;; go get -u -v golang.org/x/tools/cmd/gorename
@@ -242,8 +245,7 @@
 
 ;; emacs-lisp-mode
 (defun my-emacs-lisp-hook ()
-  (my-common-prog)
-)
+  (my-common-prog))
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
 
