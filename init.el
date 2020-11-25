@@ -1,3 +1,5 @@
+;; for emacs >= 26
+
 ;; put copy of this file to .emacs.d
 
 ;; prefer spaces by default
@@ -49,12 +51,9 @@
 
 ;; file navigation
 (require 'neotree)
-
 (global-set-key [f9] 'neotree-toggle)
-(setq neo-window-width 21)
-;; (setq neo-smart-open t)
-;; uncomment next line to make window width changeable
-;; (setq neo-window-fixed-size nil)
+(setq neo-window-height 20)
+(setq neo-window-position 'left)
 
 ;; macro
 (global-set-key [f3] 'kmacro-start-macro)
@@ -63,7 +62,6 @@
 
 ;; popwin
 (require 'popwin)
-
 (setq display-buffer-function 'popwin:display-buffer)
 
 ;; buffer list
@@ -189,11 +187,9 @@
 (add-hook 'java-mode-hook 'my-java-hook)
 
 ;; go-mode
-(require 'company)
+(require 'lsp-mode)
 (require 'flycheck)
 (require 'yasnippet)
-
-(require 'company-go)
 (require 'go-mode)
 (require 'gotest)
 (require 'flycheck-golangci-lint)
@@ -206,7 +202,7 @@
 ;; http://reangdblog.blogspot.com/2016/06/emacs-ide-go.html
 
 ;; export PATH=$PATH:$(go env GOPATH)/bin
-;; go get -u -v github.com/nsf/gocode
+
 ;; go get -u -v github.com/rogpeppe/godef
 ;; go get -u -v golang.org/x/tools/cmd/guru
 ;; go get -u -v golang.org/x/tools/cmd/gorename
@@ -222,15 +218,13 @@
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
-  (setq gofmt-args (list "-s"))
-  (add-hook 'before-save-hook 'gofmt-before-save)
+
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t)
 
   (global-set-key (kbd "C-c t") 'go-test-current-test)
   (global-set-key (kbd "C-c f") 'go-test-current-file)
   (global-set-key (kbd "C-c d") 'godef-jump)
-
-  (set (make-local-variable 'company-backends) '(company-go))
-  (company-mode)
 
   (flycheck-mode)
   (setq-default flycheck-disabled-checkers '(go-vet))
@@ -239,14 +233,12 @@
   (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
         popwin:special-display-config)
 
-  ;; (global-set-key [C-tab] (quote company-go))
-
   (yas-minor-mode)
   (hs-minor-mode)
-  (go-eldoc-setup))
+  (go-eldoc-setup)
+  (lsp-deferred))
 
 (add-hook 'go-mode-hook 'my-go-hook)
-(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;; emacs-lisp-mode
 (defun my-emacs-lisp-hook ()

@@ -19,3 +19,5 @@
 * DONE go-snippets: d -> dv, dh
 * DONE init.el: replace font settings to custom.el
 * DONE py-snippets: fix descriptions
+* TODO go: remove excess old stuff
+* TODO neotree: show in left
