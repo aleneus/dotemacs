@@ -2,9 +2,10 @@
 
 ;; put copy of this file to .emacs.d
 
-;; do-not-split window automatically
-(defun no-split-window () (interactive) nil)
-(setq split-window-preferred-function 'no-split-window)
+;; splitting window
+(setq pop-up-windows nil)
+;; (defun no-split-window () (interactive) nil)
+;; (setq split-window-preferred-function 'no-split-window)
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
