@@ -54,12 +54,6 @@
 ;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
 
-;; file navigation
-(require 'direx)
-(push '(direx:direx-mode :position left :width 40 :dedicated t)
-      popwin:special-display-config)
-(global-set-key [f9] 'direx:jump-to-directory-other-window)
-
 ;; macro
 (global-set-key [f3] 'kmacro-start-macro)
 (global-set-key [f4] 'kmacro-end-macro)
@@ -72,6 +66,12 @@
 ;; buffer list
 (push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
       popwin:special-display-config)
+
+;; file navigation
+(require 'direx)
+(push '(direx:direx-mode :position left :width 40 :dedicated t)
+      popwin:special-display-config)
+(global-set-key [f9] 'direx:jump-to-directory-other-window)
 
 ;;
 ;; close-display-connection
