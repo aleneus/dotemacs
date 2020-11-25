@@ -2,10 +2,9 @@
 
 ;; put copy of this file to .emacs.d
 
-;; split vertically
-(setq
-   split-width-threshold 0
-   split-height-threshold nil)
+;; do-not-split window automatically
+(defun no-split-window () (interactive) nil)
+(setq split-window-preferred-function 'no-split-window)
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
