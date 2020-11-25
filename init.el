@@ -55,10 +55,10 @@
 (global-set-key (kbd "C-x C-g") 'rgrep)
 
 ;; file navigation
-(require 'neotree)
-(global-set-key [f9] 'neotree-toggle)
-(setq neo-window-height 20)
-(setq neo-window-position 'left)
+(require 'direx)
+(push '(direx:direx-mode :position left :width 40 :dedicated t)
+      popwin:special-display-config)
+(global-set-key [f9] 'direx:jump-to-directory-other-window)
 
 ;; macro
 (global-set-key [f3] 'kmacro-start-macro)
