@@ -193,6 +193,7 @@
 
 ;; go-mode
 (require 'lsp-mode)
+(require 'lsp-ui)
 (require 'flycheck)
 (require 'yasnippet)
 (require 'go-mode)
@@ -203,12 +204,8 @@
 (require 'go-direx)
 (require 'godoctor)
 
-;; based on:
-;; http://reangdblog.blogspot.com/2016/06/emacs-ide-go.html
-
+;; add to .profile:
 ;; export PATH=$PATH:$(go env GOPATH)/bin
-
-;; NOTE: install them if having errors and remove excess
 
 ;; go get golang.org/x/tools/gopls@latest
 ;; go get -u -v github.com/rogpeppe/godef
