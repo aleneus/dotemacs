@@ -260,12 +260,6 @@
 
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
-;; json-mode
-(defun my-json-hook ()
-  (setq indent-tabs-mode nil))
-
-(add-hook 'json-mode-hook 'my-json-hook)
-
 ;; text-mode
 (defun my-text-hook ()
   (setq indent-tabs-mode nil))
@@ -319,7 +313,7 @@
 ;;
 ;; json-mode
 (defun my-json-mode-hook ()
-  (require 'hs-minor-mode)
-)
+  (setq indent-tabs-mode nil)
+  (hs-minor-mode))
 
-(add-hook 'json-mode-mode-hook 'my-json-mode-hook)
+(add-hook 'json-mode-hook 'my-json-mode-hook)
