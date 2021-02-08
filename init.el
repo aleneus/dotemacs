@@ -107,10 +107,6 @@
 ;; display time
 (display-time-mode 1)
 
-;; alarm
-(require 'alarm-clock)
-(global-set-key (kbd "C-x C-a") 'alarm-clock-set)
-
 ;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
@@ -132,10 +128,10 @@
 ;; different modes
 
 ;; common for programming modes
-(require 'hl-fill-column)
-(require 'fill-column-indicator)
-
 (defun my-common-prog ()
+  (require 'hl-fill-column)
+  (require 'fill-column-indicator)
+
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (linum-mode)
   (fci-mode)
@@ -157,10 +153,10 @@
 (add-hook 'c-mode-hook 'my-c-hook)
 
 ;; python-mode
-(require 'flycheck)
-(require 'elpy)
-
 (defun my-python-hook ()
+  (require 'flycheck)
+  (require 'elpy)
+
   (my-common-prog)
 
   ;; code navigation
@@ -192,17 +188,6 @@
 (add-hook 'java-mode-hook 'my-java-hook)
 
 ;; go-mode
-(require 'lsp-mode)
-(require 'lsp-ui)
-(require 'flycheck)
-(require 'yasnippet)
-(require 'go-mode)
-(require 'gotest)
-(require 'flycheck-golangci-lint)
-(require 'go-snippets)
-(require 'go-eldoc)
-(require 'go-direx)
-(require 'godoctor)
 
 ;; add to .profile:
 ;; export PATH=$PATH:$(go env GOPATH)/bin
@@ -219,6 +204,17 @@
 ;; sudo go get -u -v golang.org/x/tools/cmd/godoc
 
 (defun my-go-hook ()
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'flycheck)
+  (require 'yasnippet)
+  (require 'gotest)
+  (require 'flycheck-golangci-lint)
+  (require 'go-snippets)
+  (require 'go-eldoc)
+  (require 'go-direx)
+  (require 'godoctor)
+
   (my-common-prog)
 
   (setq tab-width 4)
@@ -252,11 +248,11 @@
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
 
 ;; latex-mode
-(require 'company-auctex)
-
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
 (defun my-latex-hook ()
+  (require 'company-auctex)
+
   (setq TeX-parse-self t)
   (visual-line-mode)
   (company-mode)
@@ -277,8 +273,8 @@
 (add-hook 'text-mode-hook 'my-text-hook)
 
 ;; graphviz-dot-mode
-(require 'graphviz-dot-mode)
 (defun my-graphviz-dot-mode-hook ()
+  (require 'graphviz-dot-mode)
   (setq graphviz-dot-indent-width 4))
 
 (add-hook 'graphviz-dot-mode-hook 'my-graphviz-dot-mode-hook)
@@ -290,7 +286,6 @@
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)
 
 ;; makdown-mode
-(require 'markdown-mode)
 
 (defun my-markdown-mode-hook ()
   (visual-line-mode))
@@ -306,31 +301,10 @@
 
 ;;
 ;; feature-mode
-(require 'feature-mode)
-
 (defun my-feature-mode-hook ()
   (my-common-prog))
 
 (add-hook 'feature-mode-hook 'my-feature-mode-hook)
-
-;;
-;; terminal
-(require 'terminal-toggle)
-(setq terminal-toggle--term-shell "/bin/bash")
-(setq terminal-toggle--term-title "myterm")
-
-(defun my-set-term-font ()
-  "Set font for terminal buffer"
-  (setq buffer-face-mode-face '(:height 180))
-  (buffer-face-mode))
-
-(defun my-terminal-toggle ()
-  "Toggle terminal window"
-  (interactive)
-  (terminal-toggle)
-  (when (string= (buffer-name) "*myterm*") (my-set-term-font)))
-
-(global-set-key (kbd "C-x t") 'my-terminal-toggle)
 
 ;;
 ;; javascript-mode
@@ -344,4 +318,8 @@
 
 ;;
 ;; json-mode
-(require 'json-mode)
+(defun my-json-mode-hook ()
+  (require 'hs-minor-mode)
+)
+
+(add-hook 'json-mode-mode-hook 'my-json-mode-hook)
