@@ -2,10 +2,9 @@
 
 ;; put copy of this file to .emacs.d
 
-;; splitting window
-(setq pop-up-windows nil)
-;; (defun no-split-window () (interactive) nil)
-;; (setq split-window-preferred-function 'no-split-window)
+;; transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 . 50))
+(add-to-list 'default-frame-alist '(alpha . (95 . 50)))
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
