@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: r
-# key: r
-# description: adds refactoring comment
-# --
-// REF

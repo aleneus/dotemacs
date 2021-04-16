@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: ts
-# key: ts
-# group: Testing
-# description: add scenario to test class
-# --
-def test_${1:scenario}(self):
-    # TODO: implement
-    pass

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: le
-# key: le
-# description: log error
-# --
-if err != nil {
-   log.Println("ERROR: $1:", err)
-}

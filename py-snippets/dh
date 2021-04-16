@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: dh
-# key: dh
-# group: Python 3
-# description: Print I'm here message
-# --
-print("DEBUG: I'm here")  # TODO: stash
