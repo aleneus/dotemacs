@@ -175,7 +175,12 @@
   (flycheck-mode)
 
   (global-set-key (kbd "C-c d") 'elpy-goto-definition)
-  (jedi-mode))
+  (jedi-mode)
+
+  ;; running tests
+  ;; sudo pip3 install pytest
+  (require 'py-test)
+  )
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
