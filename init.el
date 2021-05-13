@@ -321,3 +321,8 @@
   (hs-minor-mode))
 
 (add-hook 'json-mode-hook 'my-json-mode-hook)
+
+;;
+;; org-mode
+(add-hook 'org-agenda-mode-hook
+          #'hack-dir-local-variables-non-file-buffer)
