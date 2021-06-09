@@ -134,7 +134,8 @@
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (linum-mode)
   (fci-mode)
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+  (hs-minor-mode))
 
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
@@ -179,15 +180,13 @@
 
   ;; running tests
   ;; sudo pip3 install pytest
-  (require 'py-test)
-  )
+  (require 'py-test))
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
 ;; java-mode
 (defun my-java-hook ()
-  (my-common-prog)
-  (hs-minor-mode))
+  (my-common-prog))
 
 (add-hook 'java-mode-hook 'my-java-hook)
 
@@ -239,7 +238,6 @@
         popwin:special-display-config)
 
   (yas-minor-mode)
-  (hs-minor-mode)
   (go-eldoc-setup)
   (lsp-deferred))
 
@@ -307,12 +305,29 @@
 ;;
 ;; javascript-mode
 (defun my-javascript-hook ()
-  (my-common-prog)
-  (setq tab-width 8)
-  (setq javascript-indent-level 2)
-  (setq indent-tabs-mode nil))
+  ;; NOTE: install tern with npm
+  ;; npm install -g tern
 
-(add-hook 'javascript-mode-hook 'my-javascript-hook)
+  (my-common-prog)
+
+  (require 'json-mode)
+  (require 'js2-mode)
+  (require 'ac-js2)
+  (require 'coffee-mode)
+
+  (require 'tern)
+  (require 'tern-auto-complete)
+
+  (eval-after-load 'tern
+    '(progn
+       (require 'tern-auto-complete)
+       (tern-ac-setup)))
+
+  (tern-mode)
+  (auto-complete-mode))
+
+;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(add-hook 'js-mode-hook 'my-javascript-hook)
 
 ;;
 ;; json-mode
