@@ -308,37 +308,39 @@
 
 ;;
 ;; javascript-mode
-(defun my-javascript-hook ()
-  ;; NOTE: install tern with npm
-  ;; npm install -g tern
-
-  (my-common-prog)
+(defun my-js-hook ()
+  ;; NOTE: install npm: https://losst.ru/ustanovka-node-js-ubuntu-18-04
+  ;; NOTE: install tern: sudo npm install -g tern
 
   (require 'json-mode)
   (require 'js2-mode)
   (require 'ac-js2)
   (require 'coffee-mode)
-
   (require 'tern)
   (require 'tern-auto-complete)
 
+  (my-common-prog)
+
   (eval-after-load 'tern
     '(progn
-       (require 'tern-auto-complete)
        (tern-ac-setup)))
 
   (tern-mode)
   (auto-complete-mode))
 
 ;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(add-hook 'js-mode-hook 'my-javascript-hook)
+(add-hook 'js-mode-hook 'my-js-hook)
+
 
 ;;
 ;; json-mode
+
 (defun my-json-mode-hook ()
-  (setq indent-tabs-mode nil)
+  ;; NOTE: install jsonlint with apt
+  (flycheck-mode)
   (hs-minor-mode))
 
+(add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
 
 ;;
