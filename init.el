@@ -123,6 +123,9 @@
 
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
 
+;; company
+(require 'company)
+
 ;;
 ;; different modes
 
@@ -210,13 +213,14 @@
 ;; go get -u -v github.com/godoctor/godoctor
 ;; sudo go get -u -v golang.org/x/tools/cmd/godoc
 
+;; go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
 (defun my-go-hook ()
   (require 'lsp-mode)
   (require 'lsp-ui)
   (require 'flycheck)
   (require 'yasnippet)
   (require 'gotest)
-  (require 'flycheck-golangci-lint)
   (require 'go-snippets)
   (require 'go-eldoc)
   (require 'go-direx)
@@ -312,8 +316,11 @@
   ;; NOTE: install npm: https://losst.ru/ustanovka-node-js-ubuntu-18-04
   ;; NOTE: install tern: sudo npm install -g tern
 
-  (require 'json-mode)
   (require 'js2-mode)
+  (require 'json-mode)
+  (require 'js2-refactor)
+  (require 'xref-js2)
+  (require 'ag)
   (require 'ac-js2)
   (require 'coffee-mode)
   (require 'tern)
@@ -328,8 +335,17 @@
   (tern-mode)
   (auto-complete-mode))
 
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(add-hook 'js-mode-hook 'my-js-hook)
+(add-hook 'js2-mode-hook 'my-js-hook)
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'company-backends 'ac-js2-company)
+
+(add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+
+(add-hook 'js2-mode-hook (lambda ()
+  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 
 
 ;;
@@ -342,8 +358,3 @@
 
 (add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
-
-;;
-;; org-mode
-(add-hook 'org-agenda-mode-hook
-          #'hack-dir-local-variables-non-file-buffer)
