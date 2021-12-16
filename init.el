@@ -53,6 +53,9 @@
 ;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
 
+;; goto-line
+(global-set-key (kbd "C-x C-j") 'goto-line)
+
 ;; macro
 (global-set-key [f3] 'kmacro-start-macro)
 (global-set-key [f4] 'kmacro-end-macro)
