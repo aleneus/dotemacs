@@ -53,9 +53,6 @@
 ;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
 
-;; goto-line
-(global-set-key (kbd "C-x C-j") 'goto-line)
-
 ;; macro
 (global-set-key [f3] 'kmacro-start-macro)
 (global-set-key [f4] 'kmacro-end-macro)
@@ -109,6 +106,16 @@
 ;; display time
 (display-time-mode 1)
 
+;; company
+(require 'company)
+
+;; ffap
+(ffap-bindings)
+
+;;
+;; mode hooks
+
+;;
 ;; common flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
@@ -125,12 +132,6 @@
      (ispell-change-dictionary "russian"))))
 
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
-
-;; company
-(require 'company)
-
-;;
-;; different modes
 
 ;; common for programming modes
 (defun my-common-prog ()
