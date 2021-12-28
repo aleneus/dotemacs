@@ -112,6 +112,12 @@
 ;; ffap
 (ffap-bindings)
 
+;; insert time
+(defun now ()
+  "Insert string for the current time formatted like '2:34 PM'."
+  (interactive)
+  (insert (format-time-string "%D %-I:%M %p")))
+
 ;;
 ;; mode hooks
 
