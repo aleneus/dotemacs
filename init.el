@@ -368,3 +368,17 @@
 
 (add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
+
+;;
+;; RSS
+
+;; data is stored in ~/.elfeed
+(setq elfeed-feeds
+      '(
+        ("https://news.yandex.ru/index.rss" yandex)
+        ("https://www.linux.org.ru/section-rss.jsp?section=1" LOR)
+        ))
+
+(setq-default elfeed-search-filter "@2-days-ago +unread")
+(setq-default elfeed-search-title-max-width 100)
+(setq-default elfeed-search-title-min-width 100)
