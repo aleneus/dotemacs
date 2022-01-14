@@ -375,7 +375,12 @@
 ;; data is stored in ~/.elfeed
 (setq elfeed-feeds
       '(
-        ("https://news.yandex.ru/index.rss" yandex)
+        ;; news
+        ("https://iz.ru/xml/rss/all.xml" iz)
+        ("https://29.мвд.рф/news/rss" МВД)
+        ("https://tv29.ru/new/index.php/rss" tv29)
+
+        ;; linux
         ("https://www.linux.org.ru/section-rss.jsp?section=1" LOR)
         ))
 
