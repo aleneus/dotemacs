@@ -3,8 +3,8 @@
 ;; put copy of this file to .emacs.d
 
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 50))
-(add-to-list 'default-frame-alist '(alpha . (95 . 50)))
+(set-frame-parameter (selected-frame) 'alpha '(95 . 90))
+(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
@@ -147,6 +147,7 @@
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (linum-mode)
   (fci-mode)
+  (setq fci-rule-column 79)
   (flyspell-prog-mode)
   (hs-minor-mode))
 
