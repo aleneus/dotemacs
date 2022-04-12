@@ -198,7 +198,12 @@
 
   ;; running tests
   ;; sudo pip3 install pytest
-  (require 'py-test))
+  (require 'py-test)
+
+  ;; format-code
+  (require 'py-yapf)
+  (py-yapf-enable-on-save)
+)
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
