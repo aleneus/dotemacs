@@ -149,7 +149,9 @@
   (fci-mode)
   (setq fci-rule-column 79)
   (flyspell-prog-mode)
-  (hs-minor-mode))
+
+  (hs-minor-mode)
+  (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding))
 
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
@@ -190,7 +192,6 @@
   (elpy-enable)
   (elpy-mode)
 
-  (outline-minor-mode)
   (flycheck-mode)
 
   (global-set-key (kbd "C-c d") 'elpy-goto-definition)
@@ -374,22 +375,3 @@
 
 (add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
-
-;;
-;; RSS
-
-;; data is stored in ~/.elfeed
-(setq elfeed-feeds
-      '(
-        ;; news
-        ("https://iz.ru/xml/rss/all.xml" iz)
-        ("https://29.мвд.рф/news/rss" МВД)
-        ("https://tv29.ru/new/index.php/rss" tv29)
-
-        ;; linux
-        ("https://www.linux.org.ru/section-rss.jsp?section=1" LOR)
-        ))
-
-(setq-default elfeed-search-filter "@2-days-ago +unread")
-(setq-default elfeed-search-title-max-width 100)
-(setq-default elfeed-search-title-min-width 100)
