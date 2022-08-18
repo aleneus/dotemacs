@@ -375,3 +375,9 @@
 
 (add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
+
+;;
+;; pretty show modes
+
+(require 'mode-icons)
+(mode-icons-mode)
