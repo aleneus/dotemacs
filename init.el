@@ -141,7 +141,7 @@
 
 ;; common for programming modes
 (defun my-common-prog ()
-  (require 'minimap)
+  ;; (require 'minimap)
   (require 'hl-fill-column)
   (require 'fill-column-indicator)
 
@@ -154,8 +154,9 @@
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 
-  (setq minimap-window-location (quote right))
-  (minimap-mode))
+  ;; (setq minimap-window-location (quote right))
+  ;; (minimap-mode)
+)
 
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
