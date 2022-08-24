@@ -1,16 +1,8 @@
-;; for emacs >= 26
-
-;; put copy of this file to .emacs.d
-
-;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
-
-;; prefer spaces by default
-(setq-default indent-tabs-mode nil)
-
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
+
+;; do not create backup files
+(setq make-backup-files nil)
 
 ;; add custom file for customization interface
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -23,32 +15,44 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 ;; uncomment next line if there is a problem with GPG
-(setq package-check-signature nil)
+;; (setq package-check-signature nil)
 
-;; count lines
-(require 'total-lines)
+;; transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 . 90))
+(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
 
-(global-total-lines-mode 1)
+;; highlight current line
+(global-hl-line-mode 1)
+(set-face-background 'highlight "#222")
+(set-face-foreground 'highlight nil)
 
-(defun total-lines-count ()
-  "Print the total number of lines"
-  (interactive)
-  (message "%d" total-lines))
+;; highlight brackets
+(show-paren-mode 1)
 
-(global-set-key (kbd "C-c C-t") 'total-lines-count)
+;; display time
+(display-time-mode 1)
+
+;; prefer spaces by default
+(setq-default indent-tabs-mode nil)
+
+;; popwin
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
 
 ;; replace-string
 (global-set-key (kbd "C-h") 'replace-string)
 
+;; iedit
+(require 'iedit)
+(global-set-key (kbd "C-:") 'iedit-mode)
+
+;; multiple-cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
+
 ;; comments
 (global-set-key (kbd "C-'") 'comment-region)
 (global-set-key (kbd "C-M-'") 'uncomment-region)
-
-;; switching between windows
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
 
 ;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
@@ -57,10 +61,6 @@
 (global-set-key [f3] 'kmacro-start-macro)
 (global-set-key [f4] 'kmacro-end-macro)
 (global-set-key [f5] 'call-last-kbd-macro)
-
-;; popwin
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
 
 ;; buffer list
 (push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
@@ -71,43 +71,6 @@
 (push '(direx:direx-mode :position left :width 40 :dedicated t)
       popwin:special-display-config)
 (global-set-key [f9] 'direx:jump-to-directory-other-window)
-
-;;
-;; close-display-connection
-(global-set-key [f10] 'close-display-connection)
-
-;; editing
-(require 'iedit)
-(global-set-key (kbd "C-:") 'iedit-mode)
-
-(require 'multiple-cursors)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
-
-;; umlauts
-(define-key key-translation-map (kbd "<f8> u") (kbd "ü"))
-(define-key key-translation-map (kbd "<f8> U") (kbd "Ü"))
-(define-key key-translation-map (kbd "<f8> o") (kbd "ö"))
-(define-key key-translation-map (kbd "<f8> O") (kbd "Ö"))
-(define-key key-translation-map (kbd "<f8> a") (kbd "ä"))
-(define-key key-translation-map (kbd "<f8> A") (kbd "Ä"))
-(define-key key-translation-map (kbd "<f8> s") (kbd "ß"))
-
-;; highlight current line
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#222")
-(set-face-foreground 'highlight nil)
-
-;; highlight brackets
-(show-paren-mode 1)
-
-;; do not create backup files
-(setq make-backup-files nil)
-
-;; display time
-(display-time-mode 1)
-
-;; company
-(require 'company)
 
 ;; find file at point
 (ffap-bindings)
@@ -141,13 +104,14 @@ in `ffap-file-at-point-line-number' variable."
     (funcall-interactively #'goto-line ffap-file-at-point-line-number)
     (setq ffap-file-at-point-line-number nil)))
 
-;; insert time
-(defun now ()
-  "Insert string for the current time formatted like '2:34 PM'."
-  (interactive)
-  (insert (format-time-string "%D %-I:%M %p")))
+;; pretty show modes
+(require 'mode-icons)
+(mode-icons-mode)
 
-;; common flyspell
+;; company
+(require 'company)
+
+;; flyspell
 (defun my-flyspell-hook ()
   ;; spell checking
   (global-set-key
@@ -163,6 +127,12 @@ in `ffap-file-at-point-line-number' variable."
      (ispell-change-dictionary "russian"))))
 
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
+
+;; flyspell-prog (for checking comments)
+(defun my-flyspell-prog-hook ()
+  (ispell-change-dictionary "english"))
+
+(add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
 
 ;; common for programming modes
 (defun my-common-prog ()
@@ -183,13 +153,7 @@ in `ffap-file-at-point-line-number' variable."
   ;; (minimap-mode)
 )
 
-;; flyspell-prog (for checking comments)
-(defun my-flyspell-prog-hook ()
-  (ispell-change-dictionary "english"))
-
-(add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
-
-;; c-mode
+;; c
 (defun my-c-hook ()
   (my-common-prog)
   (setq tab-width 4)
@@ -198,7 +162,7 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'c-mode-hook 'my-c-hook)
 
-;; python-mode
+;; python
 (defun my-python-hook ()
   (require 'flycheck)
   (require 'elpy)
@@ -238,31 +202,31 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
-;; java-mode
+;; java
 (defun my-java-hook ()
   (my-common-prog))
 
 (add-hook 'java-mode-hook 'my-java-hook)
 
-;; go-mode
-
-;; add to .profile:
-;; export PATH=$PATH:$(go env GOPATH)/bin
-
-;; go get golang.org/x/tools/gopls@latest
-;; go get -u -v github.com/rogpeppe/godef
-;; go get -u -v golang.org/x/tools/cmd/guru
-;; go get -u -v golang.org/x/tools/cmd/gorename
-;; go get -u -v golang.org/x/tools/cmd/goimports
-;; go get -u -v golang.org/x/lint/golint
-;; go get -u -v github.com/kisielk/errcheck
-;; go get -u -v github.com/jstemmer/gotags
-;; go get -u -v github.com/godoctor/godoctor
-;; sudo go get -u -v golang.org/x/tools/cmd/godoc
-
-;; go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-
+;; go
 (defun my-go-hook ()
+  "
+add to .profile:
+export PATH=$PATH:$(go env GOPATH)/bin
+
+go get golang.org/x/tools/gopls@latest
+go get -u -v github.com/rogpeppe/godef
+go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v golang.org/x/tools/cmd/gorename
+go get -u -v golang.org/x/tools/cmd/goimports
+go get -u -v golang.org/x/lint/golint
+go get -u -v github.com/kisielk/errcheck
+go get -u -v github.com/jstemmer/gotags
+go get -u -v github.com/godoctor/godoctor
+sudo go get -u -v golang.org/x/tools/cmd/godoc
+
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+"
   (require 'lsp-mode)
   (require 'lsp-ui)
   (require 'flycheck)
@@ -298,13 +262,13 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'go-mode-hook 'my-go-hook)
 
-;; emacs-lisp-mode
+;; emacs-lisp
 (defun my-emacs-lisp-hook ()
   (my-common-prog))
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-hook)
 
-;; latex-mode
+;; latex
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 
 (defun my-latex-hook ()
@@ -317,44 +281,44 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
-;; text-mode
+;; text
 (defun my-text-hook ()
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'my-text-hook)
 
-;; graphviz-dot-mode
+;; graphviz-dot
 (defun my-graphviz-dot-mode-hook ()
   (require 'graphviz-dot-mode)
   (setq graphviz-dot-indent-width 4))
 
 (add-hook 'graphviz-dot-mode-hook 'my-graphviz-dot-mode-hook)
 
-;; sh-mode
+;; sh
 (defun my-sh-mode-hook ()
   (my-common-prog))
 
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)
 
-;; makdown-mode
+;; markdown
 (defun my-markdown-mode-hook ()
   (visual-line-mode))
 
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook)
 
-;; restructured text
+;; rst
 (defun my-rst-mode-hook ()
   (visual-line-mode))
 
 (add-hook 'rst-mode-hook 'my-rst-mode-hook)
 
-;; feature-mode
+;; gherkin
 (defun my-feature-mode-hook ()
   (my-common-prog))
 
 (add-hook 'feature-mode-hook 'my-feature-mode-hook)
 
-;; javascript-mode
+;; js
 (defun my-js-hook ()
   ;; NOTE: install npm: https://losst.ru/ustanovka-node-js-ubuntu-18-04
   ;; NOTE: install tern: sudo npm install -g tern
@@ -390,7 +354,7 @@ in `ffap-file-at-point-line-number' variable."
 (add-hook 'js2-mode-hook (lambda ()
   (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 
-;; json-mode
+;; json
 (defun my-json-mode-hook ()
   ;; NOTE: install jsonlint with apt
   (flycheck-mode)
@@ -398,7 +362,3 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'json-mode-hook #'flycheck-mode)
 (add-hook 'json-mode-hook 'my-json-mode-hook)
-
-;; pretty show modes
-(require 'mode-icons)
-(mode-icons-mode)
