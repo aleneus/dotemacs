@@ -35,20 +35,8 @@
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
 
-;; popwin
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-
 ;; replace-string
 (global-set-key (kbd "C-h") 'replace-string)
-
-;; iedit
-(require 'iedit)
-(global-set-key (kbd "C-:") 'iedit-mode)
-
-;; multiple-cursors
-(require 'multiple-cursors)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
 
 ;; comments
 (global-set-key (kbd "C-'") 'comment-region)
@@ -62,15 +50,9 @@
 (global-set-key [f4] 'kmacro-end-macro)
 (global-set-key [f5] 'call-last-kbd-macro)
 
-;; buffer list
-(push '("*Buffer List*" :regexp t :position right :width 0.4 :dedicated t :stick t)
-      popwin:special-display-config)
-
-;; file navigation
-(require 'direx)
-(push '(direx:direx-mode :position left :width 40 :dedicated t)
-      popwin:special-display-config)
-(global-set-key [f9] 'direx:jump-to-directory-other-window)
+;; pretty show modes
+(require 'mode-icons)
+(mode-icons-mode)
 
 ;; find file at point
 (ffap-bindings)
@@ -104,9 +86,27 @@ in `ffap-file-at-point-line-number' variable."
     (funcall-interactively #'goto-line ffap-file-at-point-line-number)
     (setq ffap-file-at-point-line-number nil)))
 
-;; pretty show modes
-(require 'mode-icons)
-(mode-icons-mode)
+
+(require 'use-package)
+
+;; popwin
+(use-package popwin
+  :init
+  (setq display-buffer-function 'popwin:display-buffer))
+
+;; iedit
+(use-package iedit
+  :init (global-set-key (kbd "C-:") 'iedit-mode))
+
+;; multiple-cursors
+(use-package multiple-cursors
+  :init (global-set-key (kbd "C-c m c") 'mc/edit-lines))
+
+;; file navigation
+(require 'direx)
+(push '(direx:direx-mode :position left :width 40 :dedicated t)
+      popwin:special-display-config)
+(global-set-key [f9] 'direx:jump-to-directory-other-window)
 
 ;; company
 (require 'company)
@@ -149,9 +149,52 @@ in `ffap-file-at-point-line-number' variable."
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 
-  ;; (setq minimap-window-location (quote right))
-  ;; (minimap-mode)
+  (setq minimap-window-location (quote right))
+  (minimap-mode)
 )
+
+;; go
+(use-package go-mode
+  ;; add to .profile:
+  ;; export PATH=$PATH:$(go env GOPATH)/bin
+
+  ;; Required tools:
+
+  ;; github.com/rogpeppe/godef
+  ;; golang.org/x/tools/gopls
+  ;; github.com/golangci/golangci-lint/cmd/golangci-lint
+  ;; github.com/jstemmer/gotags
+
+  :config
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'flycheck)
+  (require 'yasnippet)
+  (require 'gotest)
+  (require 'go-snippets)
+  (require 'go-eldoc)
+  (require 'go-direx)
+  (require 'godoctor)
+
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq-default flycheck-disabled-checkers '(go-vet))
+
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t)
+
+  :bind
+  ("C-c t" . go-test-current-test)
+  ("C-c f" . go-test-current-file)
+  ("C-c d" . godef-jump)
+  ([f11] . go-direx-pop-to-buffer)
+
+  :hook
+  (go-mode . my-common-prog)
+  (go-mode . flycheck-mode)
+  (go-mode . yas-minor-mode)
+  (go-mode . go-eldoc-setup)
+  (go-mode . lsp-deferred))
 
 ;; c
 (defun my-c-hook ()
@@ -197,8 +240,7 @@ in `ffap-file-at-point-line-number' variable."
 
   ;; format-code
   (require 'py-yapf)
-  (py-yapf-enable-on-save)
-)
+  (py-yapf-enable-on-save))
 
 (add-hook 'python-mode-hook 'my-python-hook)
 
@@ -207,60 +249,6 @@ in `ffap-file-at-point-line-number' variable."
   (my-common-prog))
 
 (add-hook 'java-mode-hook 'my-java-hook)
-
-;; go
-(defun my-go-hook ()
-  "
-add to .profile:
-export PATH=$PATH:$(go env GOPATH)/bin
-
-go get golang.org/x/tools/gopls@latest
-go get -u -v github.com/rogpeppe/godef
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v golang.org/x/tools/cmd/goimports
-go get -u -v golang.org/x/lint/golint
-go get -u -v github.com/kisielk/errcheck
-go get -u -v github.com/jstemmer/gotags
-go get -u -v github.com/godoctor/godoctor
-sudo go get -u -v golang.org/x/tools/cmd/godoc
-
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-"
-  (require 'lsp-mode)
-  (require 'lsp-ui)
-  (require 'flycheck)
-  (require 'yasnippet)
-  (require 'gotest)
-  (require 'go-snippets)
-  (require 'go-eldoc)
-  (require 'go-direx)
-  (require 'godoctor)
-
-  (my-common-prog)
-
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t)
-
-  (global-set-key (kbd "C-c t") 'go-test-current-test)
-  (global-set-key (kbd "C-c f") 'go-test-current-file)
-  (global-set-key (kbd "C-c d") 'godef-jump)
-
-  (flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(go-vet))
-
-  (define-key go-mode-map [f11] 'go-direx-pop-to-buffer)
-  (push '("^\*go-direx:" :regexp t :position right :width 0.4 :dedicated t :stick t)
-        popwin:special-display-config)
-
-  (yas-minor-mode)
-  (go-eldoc-setup)
-  (lsp-deferred))
-
-(add-hook 'go-mode-hook 'my-go-hook)
 
 ;; emacs-lisp
 (defun my-emacs-lisp-hook ()
