@@ -176,9 +176,6 @@ in `ffap-file-at-point-line-number' variable."
   (require 'go-direx)
   (require 'godoctor)
 
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t)
-
   :bind
   ("C-c t" . go-test-current-test)
   ("C-c f" . go-test-current-file)
@@ -187,15 +184,20 @@ in `ffap-file-at-point-line-number' variable."
 
   :hook
   (go-mode . (lambda ()
+               (my-common-prog)
+
                (setq tab-width 4)
                (setq indent-tabs-mode t)
+
+               (add-hook 'before-save-hook #'lsp-format-buffer t t)
+               (add-hook 'before-save-hook #'lsp-organize-imports t t)
+
+               (flycheck-mode)
                (setq-default flycheck-disabled-checkers '(go-vet))
 
-               (go-mode . my-common-prog)
-               (go-mode . flycheck-mode)
-               (go-mode . yas-minor-mode)
-               (go-mode . go-eldoc-setup)
-               (go-mode . lsp-deferred))))
+               (yas-minor-mode)
+               (go-eldoc-setup)
+               (lsp-deferred))))
 
 ;; c
 (defun my-c-hook ()
