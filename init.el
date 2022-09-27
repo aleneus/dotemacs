@@ -136,7 +136,6 @@ in `ffap-file-at-point-line-number' variable."
 
 ;; common for programming modes
 (defun my-common-prog ()
-  ;; (require 'minimap)
   (require 'hl-fill-column)
   (require 'fill-column-indicator)
 
@@ -149,8 +148,9 @@ in `ffap-file-at-point-line-number' variable."
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 
-  (setq minimap-window-location (quote right))
-  (minimap-mode)
+  ;; (require 'minimap)
+  ;; (setq minimap-window-location (quote right))
+  ;; (minimap-mode)
 )
 
 ;; go
@@ -176,10 +176,6 @@ in `ffap-file-at-point-line-number' variable."
   (require 'go-direx)
   (require 'godoctor)
 
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq-default flycheck-disabled-checkers '(go-vet))
-
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t)
 
@@ -190,11 +186,16 @@ in `ffap-file-at-point-line-number' variable."
   ([f11] . go-direx-pop-to-buffer)
 
   :hook
-  (go-mode . my-common-prog)
-  (go-mode . flycheck-mode)
-  (go-mode . yas-minor-mode)
-  (go-mode . go-eldoc-setup)
-  (go-mode . lsp-deferred))
+  (go-mode . (lambda ()
+               (setq tab-width 4)
+               (setq indent-tabs-mode t)
+               (setq-default flycheck-disabled-checkers '(go-vet))
+
+               (go-mode . my-common-prog)
+               (go-mode . flycheck-mode)
+               (go-mode . yas-minor-mode)
+               (go-mode . go-eldoc-setup)
+               (go-mode . lsp-deferred)))
 
 ;; c
 (defun my-c-hook ()
