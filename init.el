@@ -195,7 +195,7 @@ in `ffap-file-at-point-line-number' variable."
                (go-mode . flycheck-mode)
                (go-mode . yas-minor-mode)
                (go-mode . go-eldoc-setup)
-               (go-mode . lsp-deferred)))
+               (go-mode . lsp-deferred))))
 
 ;; c
 (defun my-c-hook ()
