@@ -188,10 +188,11 @@ in `ffap-file-at-point-line-number' variable."
   (require 'godoctor)
 
   :bind
-  ("C-c t" . go-test-current-test)
-  ("C-c f" . go-test-current-file)
-  ("C-c d" . godef-jump)
-  ([f11] . go-direx-pop-to-buffer)
+  (:map go-mode-map
+        ("C-c t" . go-test-current-test)
+        ("C-c f" . go-test-current-file)
+        ("C-c d" . godef-jump)
+        ([f11] . go-direx-pop-to-buffer))
 
   :hook
   (go-mode
@@ -223,7 +224,8 @@ in `ffap-file-at-point-line-number' variable."
   (require 'py-yapf)
 
   :bind
-  ("C-c d" . elpy-goto-definition)
+  (:map python-mode-map
+        ("C-c d" . elpy-goto-definition))
 
   :hook
   (python-mode
