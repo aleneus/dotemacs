@@ -1,4 +1,4 @@
-;; hide welcome screen
+; hide welcome screen
 (setq inhibit-splash-screen t)
 
 ;; do not create backup files
@@ -199,6 +199,36 @@ in `ffap-file-at-point-line-number' variable."
                (go-eldoc-setup)
                (lsp-deferred))))
 
+(use-package python-mode
+  ;; Install required tools:
+  ;; sudo pip3 install pytest
+
+  :config
+  (require 'flycheck)
+  (require 'elpy)
+  (require 'jedi)
+  (require 'py-test)
+  (require 'py-yapf)
+
+  :bind
+  ("C-c d" . elpy-goto-definition)
+
+  :hook
+  (python-mode . (lambda ()
+                   (setq tab-width 4)
+                   (setq indent-tabs-mode nil)
+                   (setq elpy-rpc-python-command "python3")
+                   (setq elpy-rpc-backend "jedi")
+                   (setq elpy-rpc-virtualenv-path 'current)
+                   (setq flycheck-checker 'python-pylint)
+
+                   (my-common-prog)
+                   (elpy-enable)
+                   (elpy-mode)
+                   (flycheck-mode)
+                   (jedi-mode)
+                   (py-yapf-enable-on-save))))
+
 ;; c
 (defun my-c-hook ()
   (my-common-prog)
@@ -207,45 +237,6 @@ in `ffap-file-at-point-line-number' variable."
   (setq indent-tabs-mode t))
 
 (add-hook 'c-mode-hook 'my-c-hook)
-
-;; python
-(defun my-python-hook ()
-  (require 'flycheck)
-  (require 'elpy)
-  (require 'jedi)
-
-  (my-common-prog)
-
-  ;; code navigation
-  (push '("*Occur*" :regexp t :position right :width 0.4 :dedicated t :stick t)
-        popwin:special-display-config)
-
-  (setq tab-width 4)
-  (setq indent-tabs-mode nil)
-
-  (setq elpy-rpc-python-command "python3")
-  (setq elpy-rpc-backend "jedi")
-  (setq elpy-rpc-virtualenv-path 'current)
-
-  (setq flycheck-checker 'python-pylint)
-
-  (elpy-enable)
-  (elpy-mode)
-
-  (flycheck-mode)
-
-  (global-set-key (kbd "C-c d") 'elpy-goto-definition)
-  (jedi-mode)
-
-  ;; running tests
-  ;; sudo pip3 install pytest
-  (require 'py-test)
-
-  ;; format-code
-  (require 'py-yapf)
-  (py-yapf-enable-on-save))
-
-(add-hook 'python-mode-hook 'my-python-hook)
 
 ;; java
 (defun my-java-hook ()
