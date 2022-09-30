@@ -153,7 +153,6 @@ in `ffap-file-at-point-line-number' variable."
   ;; (minimap-mode)
 )
 
-;; go
 (use-package go-mode
   ;; add to .profile:
   ;; export PATH=$PATH:$(go env GOPATH)/bin
@@ -183,21 +182,22 @@ in `ffap-file-at-point-line-number' variable."
   ([f11] . go-direx-pop-to-buffer)
 
   :hook
-  (go-mode . (lambda ()
-               (my-common-prog)
+  (go-mode
+   . (lambda ()
+       (my-common-prog)
 
-               (setq tab-width 4)
-               (setq indent-tabs-mode t)
+       (setq tab-width 4)
+       (setq indent-tabs-mode t)
 
-               (add-hook 'before-save-hook #'lsp-format-buffer t t)
-               (add-hook 'before-save-hook #'lsp-organize-imports t t)
+       (add-hook 'before-save-hook #'lsp-format-buffer t t)
+       (add-hook 'before-save-hook #'lsp-organize-imports t t)
 
-               (flycheck-mode)
-               (setq-default flycheck-disabled-checkers '(go-vet))
+       (flycheck-mode)
+       (setq-default flycheck-disabled-checkers '(go-vet))
 
-               (yas-minor-mode)
-               (go-eldoc-setup)
-               (lsp-deferred))))
+       (yas-minor-mode)
+       (go-eldoc-setup)
+       (lsp-deferred))))
 
 (use-package python-mode
   ;; Install required tools:
@@ -214,20 +214,21 @@ in `ffap-file-at-point-line-number' variable."
   ("C-c d" . elpy-goto-definition)
 
   :hook
-  (python-mode . (lambda ()
-                   (setq tab-width 4)
-                   (setq indent-tabs-mode nil)
-                   (setq elpy-rpc-python-command "python3")
-                   (setq elpy-rpc-backend "jedi")
-                   (setq elpy-rpc-virtualenv-path 'current)
-                   (setq flycheck-checker 'python-pylint)
+  (python-mode
+   . (lambda ()
+       (setq tab-width 4)
+       (setq indent-tabs-mode nil)
+       (setq elpy-rpc-python-command "python3")
+       (setq elpy-rpc-backend "jedi")
+       (setq elpy-rpc-virtualenv-path 'current)
+       (setq flycheck-checker 'python-pylint)
 
-                   (my-common-prog)
-                   (elpy-enable)
-                   (elpy-mode)
-                   (flycheck-mode)
-                   (jedi-mode)
-                   (py-yapf-enable-on-save))))
+       (my-common-prog)
+       (elpy-enable)
+       (elpy-mode)
+       (flycheck-mode)
+       (jedi-mode)
+       (py-yapf-enable-on-save))))
 
 ;; c
 (defun my-c-hook ()
