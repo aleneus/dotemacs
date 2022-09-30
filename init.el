@@ -134,6 +134,18 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'flyspell-prog-mode-hook 'my-flyspell-prog-hook)
 
+;; helm
+(require 'helm)
+(require 'helm-config)
+
+(helm-mode 1)
+(helm-autoresize-mode t)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-mini)
+
 ;; common for programming modes
 (defun my-common-prog ()
   (require 'hl-fill-column)
