@@ -4,6 +4,7 @@
 ;; do not create backup files
 (setq make-backup-files nil)
 
+
 ;; add custom file for customization interface
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
@@ -35,17 +36,11 @@
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
 
-;; replace-string
+;; key bindings
 (global-set-key (kbd "C-h") 'replace-string)
-
-;; comments
 (global-set-key (kbd "C-'") 'comment-region)
 (global-set-key (kbd "C-M-'") 'uncomment-region)
-
-;; rgrep
 (global-set-key (kbd "C-x C-g") 'rgrep)
-
-;; macro
 (global-set-key [f3] 'kmacro-start-macro)
 (global-set-key [f4] 'kmacro-end-macro)
 (global-set-key [f5] 'call-last-kbd-macro)
@@ -91,15 +86,17 @@ in `ffap-file-at-point-line-number' variable."
 
 ;; popwin
 (use-package popwin
-  :init
-  (setq display-buffer-function 'popwin:display-buffer))
+  :ensure t
+  :init (setq display-buffer-function 'popwin:display-buffer))
 
 ;; iedit
 (use-package iedit
+  :ensure t
   :init (global-set-key (kbd "C-:") 'iedit-mode))
 
 ;; multiple-cursors
 (use-package multiple-cursors
+  :ensure t
   :init (global-set-key (kbd "C-c m c") 'mc/edit-lines))
 
 ;; file navigation
@@ -146,25 +143,49 @@ in `ffap-file-at-point-line-number' variable."
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 
+;; fci
+(use-package fill-column-indicator
+  :ensure t
+  :config (setq fci-rule-column 79))
+
 ;; common for programming modes
 (defun my-common-prog ()
-  (require 'hl-fill-column)
-  (require 'fill-column-indicator)
-
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (linum-mode)
   (fci-mode)
-  (setq fci-rule-column 79)
   (flyspell-prog-mode)
 
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
-
-  ;; (require 'minimap)
-  ;; (setq minimap-window-location (quote right))
-  ;; (minimap-mode)
 )
 
+;; lsp
+(use-package lsp-mode
+  :ensure t
+  :config (setq lsp-completion-enable-additional-text-edit nil))
+
+;; snippets
+(use-package yasnippet
+  :ensure t
+  :config (yas-global-mode))
+
+;; c, cpp, objc
+(use-package ccls
+  ;; Install required tools:
+  ;; sudo apt install clangd
+  :ensure t
+
+  :config
+  (setq ccls-executable "ccls")
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda ()
+           (my-common-prog)
+           (lsp))))
+
+;; go
 (use-package go-mode
   ;; add to .profile:
   ;; export PATH=$PATH:$(go env GOPATH)/bin
@@ -175,12 +196,12 @@ in `ffap-file-at-point-line-number' variable."
   ;; golang.org/x/tools/gopls
   ;; github.com/golangci/golangci-lint/cmd/golangci-lint
   ;; github.com/jstemmer/gotags
+  :ensure t
 
   :config
   (require 'lsp-mode)
   (require 'lsp-ui)
   (require 'flycheck)
-  (require 'yasnippet)
   (require 'gotest)
   (require 'go-snippets)
   (require 'go-eldoc)
@@ -212,9 +233,11 @@ in `ffap-file-at-point-line-number' variable."
        (go-eldoc-setup)
        (lsp-deferred))))
 
+;; python
 (use-package python-mode
   ;; Install required tools:
   ;; sudo pip3 install pytest
+  :ensure t
 
   :config
   (require 'flycheck)
@@ -243,15 +266,6 @@ in `ffap-file-at-point-line-number' variable."
        (flycheck-mode)
        (jedi-mode)
        (py-yapf-enable-on-save))))
-
-;; c
-(defun my-c-hook ()
-  (my-common-prog)
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t))
-
-(add-hook 'c-mode-hook 'my-c-hook)
 
 ;; java
 (defun my-java-hook ()
