@@ -154,7 +154,7 @@ in `ffap-file-at-point-line-number' variable."
   :ensure t
   :config (yas-global-mode))
 
-;; cpp
+;; C++
 ;; sudo apt install rtags
 ;; sudo apt install clang
 ;; sudo apt install libclang-dev
@@ -213,11 +213,8 @@ in `ffap-file-at-point-line-number' variable."
 (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 
 (require 'clang-format)
-
-(add-hook 'c-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
+(add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
+                                         (clang-format-buffer))))
 
 (require 'cmake-ide)
 (cmake-ide-setup)
