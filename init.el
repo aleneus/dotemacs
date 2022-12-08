@@ -159,6 +159,8 @@ in `ffap-file-at-point-line-number' variable."
 ;; sudo apt install clang
 ;; sudo apt install libclang-dev
 
+(add-hook 'c-mode-common-hook 'my-common-prog)
+
 (require 'rtags)
 
 (setq rtags-completions-enabled t)
@@ -189,8 +191,8 @@ in `ffap-file-at-point-line-number' variable."
     'company-backends 'company-irony))
 
 (setq company-idle-delay 0)
-(define-key c-mode-map [(tab)] 'company-complete)
-(define-key c++-mode-map [(tab)] 'company-complete)
+;; (define-key c-mode-map [(tab)] 'company-complete)
+;; (define-key c++-mode-map [(tab)] 'company-complete)
 
 (require 'company-irony-c-headers)
 
@@ -210,8 +212,12 @@ in `ffap-file-at-point-line-number' variable."
 
 (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(require 'clang-format)
+
+(add-hook 'c-mode-common-hook
+          (function (lambda ()
+                    (add-hook 'before-save-hook
+                              'clang-format-buffer))))
 
 (require 'cmake-ide)
 (cmake-ide-setup)
