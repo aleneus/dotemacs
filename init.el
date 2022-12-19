@@ -93,14 +93,17 @@ in `ffap-file-at-point-line-number' variable."
 
 ;; popwin
 (use-package popwin
+  :ensure t
   :init (setq display-buffer-function 'popwin:display-buffer))
 
 ;; iedit
 (use-package iedit
+  :ensure t
   :init (global-set-key (kbd "C-:") 'iedit-mode))
 
 ;; multiple-cursors
 (use-package multiple-cursors
+  :ensure t
   :init (global-set-key (kbd "C-c m c") 'mc/edit-lines))
 
 ;; file navigation
@@ -135,6 +138,7 @@ in `ffap-file-at-point-line-number' variable."
 
 ;; fci
 (use-package fill-column-indicator
+  :ensure t
   :config (setq fci-rule-column 79))
 
 ;; common for programming modes
