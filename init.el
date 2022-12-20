@@ -16,7 +16,9 @@
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("gnu-devel" . "https://elpa.gnu.org/devel/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-        ("melpa" . "https://melpa.org/packages/")))
+        ("melpa" . "https://melpa.org/packages/")
+        ("elpa_local" . "/home/apopov/emacs-pkgs/elpa")
+        ("melpa_local" . "/home/apopov/emacs-pkgs/melpa")))
 
 (package-initialize)
 ;; uncomment next line if there is a problem with GPG
@@ -24,18 +26,9 @@
 
 (require 'use-package)
 
-;; colors
-(require 'django-theme)
-(load-theme 'django)
-
 ;; transparency
 (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
 (add-to-list 'default-frame-alist '(alpha . (95 . 90)))
-
-;; highlight current line
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#222")
-(set-face-foreground 'highlight nil)
 
 ;; highlight brackets
 (show-paren-mode 1)
@@ -55,9 +48,18 @@
 (global-set-key [f4] 'kmacro-end-macro)
 (global-set-key [f5] 'call-last-kbd-macro)
 
-;; pretty show modes
-(require 'mode-icons)
-(mode-icons-mode)
+;; theme
+(require 'django-theme)
+(load-theme 'django)
+
+;; highlight current line
+(global-hl-line-mode 1)
+(set-face-background 'highlight "#222")
+(set-face-foreground 'highlight nil)
+
+;; scroll
+(require 'smooth-scrolling)
+(smooth-scrolling-mode)
 
 ;; find file at point
 (ffap-bindings)
@@ -90,6 +92,10 @@ in `ffap-file-at-point-line-number' variable."
   (when ffap-file-at-point-line-number
     (funcall-interactively #'goto-line ffap-file-at-point-line-number)
     (setq ffap-file-at-point-line-number nil)))
+
+;; pretty show modes
+(require 'mode-icons)
+(mode-icons-mode)
 
 ;; popwin
 (use-package popwin
@@ -163,65 +169,65 @@ in `ffap-file-at-point-line-number' variable."
 ;; sudo apt install clang
 ;; sudo apt install libclang-dev
 
-(add-hook 'c-mode-common-hook 'my-common-prog)
-
-(require 'rtags)
-
-(setq rtags-completions-enabled t)
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends 'company-rtags))
-(setq rtags-autostart-diagnostics t)
-(rtags-enable-standard-keybindings)
-
-(require 'irony)
-(add-hook 'c-mode-common-hook 'irony-mode)
-
-(defun my-irony-mode-hook ()
-  (define-key irony-mode-map [remap completion-at-point]
-    'irony-completion-at-point-async)
-  (define-key irony-mode-map [remap complete-symbol]
-    'irony-completion-at-point-async))
-
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-(require 'company-irony)
-
-(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-(setq company-backends (delete 'company-semantic company-backends))
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends 'company-irony))
-
-(setq company-idle-delay 0)
-;; (define-key c-mode-map [(tab)] 'company-complete)
-;; (define-key c++-mode-map [(tab)] 'company-complete)
-
-(require 'company-irony-c-headers)
-
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends '(company-irony-c-headers company-irony)))
-
-(add-hook 'c-mode-common-hook 'company-mode)
-(add-hook 'c-mode-common-hook 'flycheck-mode)
-
-(require 'flycheck-rtags)
-
 (defun my-flycheck-rtags-setup ()
+  (require 'flycheck)
+  (require 'rtags)
+
   (flycheck-select-checker 'rtags)
   (setq-local flycheck-highlighting-mode nil)
   (setq-local flycheck-check-syntax-automatically nil))
 
-(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+(defun my-c-mode-common-hook ()
+  (my-common-prog)
 
-(require 'clang-format)
-(add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
-                                         (clang-format-buffer))))
+  (require 'clang-format)
+  (require 'cmake-ide)
+  (require 'company-irony)
+  (require 'company-irony-c-headers)
+  (require 'flycheck-rtags)
+  (require 'irony)
+  (require 'rtags)
 
-(require 'cmake-ide)
-(cmake-ide-setup)
+  (setq rtags-completions-enabled t)
+  (eval-after-load 'company
+    '(add-to-list
+      'company-backends 'company-rtags))
+  (setq rtags-autostart-diagnostics t)
+  (rtags-enable-standard-keybindings)
+
+  (defun my-irony-mode-hook ()
+    (define-key irony-mode-map [remap completion-at-point]
+      'irony-completion-at-point-async)
+    (define-key irony-mode-map [remap complete-symbol]
+      'irony-completion-at-point-async))
+
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+
+  (setq company-backends (delete 'company-semantic company-backends))
+  (eval-after-load 'company
+    '(add-to-list
+      'company-backends 'company-irony))
+
+  (setq company-idle-delay 0)
+
+  (eval-after-load 'company
+    '(add-to-list
+      'company-backends '(company-irony-c-headers company-irony)))
+
+  (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
+                                           (clang-format-buffer))))
+
+  (cmake-ide-setup)
+
+  (irony-mode)
+  (company-mode)
+  (flycheck-mode)
+  (my-flycheck-rtags-setup))
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; emacs-lisp
 (defun my-emacs-lisp-hook ()
@@ -235,20 +241,18 @@ in `ffap-file-at-point-line-number' variable."
   ;; export PATH=$PATH:$(go env GOPATH)/bin
   :config
   (require 'flycheck)
+  (require 'go-eldoc)
+  (require 'go-snippets)
+  (require 'gotest)
   (require 'lsp-mode)
   (require 'lsp-ui)
-  (require 'gotest)
-  (require 'go-snippets)
-  (require 'go-eldoc)
-  (require 'go-direx)
-  (require 'godoctor)
 
   :bind
   (:map go-mode-map
         ("C-c t" . go-test-current-test)
         ("C-c f" . go-test-current-file)
-        ("C-c d" . godef-jump)
-        ([f11] . go-direx-pop-to-buffer))
+        ("C-c p" . go-test-current-project)
+        ("C-c d" . godef-jump))
 
   :hook
   (go-mode
@@ -273,8 +277,8 @@ in `ffap-file-at-point-line-number' variable."
   ;; Install required tools:
   ;; sudo pip3 install pytest
   :config
-  (require 'flycheck)
   (require 'elpy)
+  (require 'flycheck)
   (require 'jedi)
   (require 'py-test)
   (require 'py-yapf)
@@ -300,11 +304,12 @@ in `ffap-file-at-point-line-number' variable."
        (jedi-mode)
        (py-yapf-enable-on-save))))
 
-;; JSON files
+;; JSON
 (defun my-json-mode-hook ()
   ;; NOTE: install jsonlint with apt
   (flycheck-mode)
-  (hs-minor-mode))
+  (hs-minor-mode)
+  (setq json-mode-indent-level 4))
 
 (add-hook 'json-mode-hook 'my-json-mode-hook)
 
@@ -369,15 +374,15 @@ in `ffap-file-at-point-line-number' variable."
   ;; NOTE: install npm: https://losst.ru/ustanovka-node-js-ubuntu-18-04
   ;; NOTE: install tern: sudo npm install -g tern
 
-  (require 'js2-mode)
-  (require 'json-mode)
-  (require 'js2-refactor)
-  (require 'xref-js2)
-  (require 'ag)
   (require 'ac-js2)
+  (require 'ag)
   (require 'coffee-mode)
+  (require 'js2-mode)
+  (require 'js2-refactor)
+  (require 'json-mode)
   (require 'tern)
   (require 'tern-auto-complete)
+  (require 'xref-js2)
 
   (my-common-prog)
 
@@ -391,6 +396,9 @@ in `ffap-file-at-point-line-number' variable."
 (add-hook 'js2-mode-hook 'my-js-hook)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+(require 'company)
+
 (add-to-list 'company-backends 'ac-js2-company)
 
 (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
