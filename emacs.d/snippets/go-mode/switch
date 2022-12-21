@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributer: Aleksand Popov <aleneus@gmail.com>
+# name: switch
+# key: switch
+# description: switch case operator
+# --
+switch ${1:condition} {
+
+case ${2:value}:
+
+default:
+}

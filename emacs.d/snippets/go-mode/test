@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: test {}
+# key: test
+# description: test function
+# --
+func Test${1:Name}(t *testing.T) {
+     t.Parallel()
+
+     $0
+}

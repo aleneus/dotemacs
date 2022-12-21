@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: tef {}
+# key: tef
+# description: compare values in test
+# --
+if ${1:eq} != ${2:req} {
+     t.Fatal($1)
+}

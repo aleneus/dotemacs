@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: trun {}
+# key: trun
+# description: add a t.Run() within test
+# --
+t.Run("${1:Scenario}", func(t *testing.T){
+    t.Parallel()
+
+    // TODO test: implement
+})

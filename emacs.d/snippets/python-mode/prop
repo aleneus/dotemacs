@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: prop
+# key: prop
+# group: Common
+# description: setter, getter and property
+# --
+def get_${1:field}(self):
+    """Return $1."""
+    return self.__$1
+
+def set_$1(self, value):
+    """Set $1."""
+    self.__$1 = value
+
+$1 = property(get_$1, set_$1, doc="$2")

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dv
+# key: dv
+# --
+std::cout << "DEBUG: " << $1 << std::endl;

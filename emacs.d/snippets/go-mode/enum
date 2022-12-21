@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# contributer: Aleksand Popov <aleneus@gmail.com>
+# name: enum
+# key: enum
+# description: adds simple type with constants
+# --
+// $1 represents ${2:description}.
+type ${1:Name} int
+
+const (
+      // $1$3 ${4:description}.
+      $1${3:Name} $1 = 0
+)

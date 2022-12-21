@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dh
+# key: dh
+# --
+std::cout << "DEBUG: here\n";

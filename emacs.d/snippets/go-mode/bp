@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: bp
+# key: bp
+# description: adds break point (imitation with panic)
+# --
+// TODO: remove
+log.Println("DEBUG: $1 =", $1)
+panic("break")
+//

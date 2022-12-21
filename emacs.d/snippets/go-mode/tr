@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: tr {}
+# key: tr
+# description: add "TODO restore" record
+# --
+// TODO restore

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: pe
+# key: pe
+# description: panic if error
+# --
+if err != nil {
+   panic(err)
+}

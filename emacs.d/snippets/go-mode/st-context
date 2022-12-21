@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: st-context
+# key: st-context
+# description: context object for State pattern
+# --
+// $1State represents states of $1
+type $1State interface {
+}
+
+// $1 represents ${2:what}
+type ${1:Name} struct {
+	state $1State
+}
+
+// New$1 creates new $1 and returns pointer to it
+func New$1() (${3:x} *$1, err error) {
+	$3 = new($1)
+	return $3, $3.Init()
+}
+
+// Init $1
+func ($3 *$1) Init() (err error) {
+	return nil
+}
+
+// SetState of $1
+func ($3 *$1) SetState(s $1State) {
+	$3.state = s
+}

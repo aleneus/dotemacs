@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: st-state
+# key: st-state
+# description: add a structure with New and Init methods
+# --
+// $1State$2 represents the $2 state of $1
+type ${1:Of}State${2:Name} struct {
+     context *$1
+}
+
+// New$1State$2 creates $2 state for $1 and returns pointer to it
+func New$1State$2 (c *$1) (s *$1State$2, err error) {
+     if c == nil {
+     	return nil, fmt.Errorf("nil context")
+     }
+     s = new($1State$2)
+     s.context = c
+     return s, nil
+}

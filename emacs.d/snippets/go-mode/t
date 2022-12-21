@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: t {}
+# key: t
+# description: add TODO record
+# --
+// TODO ${1:tag}: $0

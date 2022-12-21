@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: method
+# key: method
+# description: add method
+# --
+// $3 ${4:description}.
+func (${1:x} *${2:Struct}) ${3:MethodName}() {
+        $0
+}
