@@ -1,32 +1,29 @@
 (require 'use-package)
 
-(use-package python-mode
-  ;; Install required tools:
-  ;; sudo pip3 install pytest
+(use-package elpy
+  :ensure t
+
   :config
-  (require 'elpy)
   (require 'flycheck)
-  (require 'jedi)
-  (require 'py-test)
-  (require 'py-yapf)
+  (require 'ac-js2)
 
-  :bind
-  (:map python-mode-map
-        ("C-c d" . elpy-goto-definition))
+  (setq elpy-rpc-python-command "python3")
+  (setq elpy-rpc-virtualenv-path 'current)
 
-  :hook
-  (python-mode
-   . (lambda ()
-       (setq tab-width 4)
-       (setq indent-tabs-mode nil)
-       (setq elpy-rpc-python-command "python3")
-       (setq elpy-rpc-backend "jedi")
-       (setq elpy-rpc-virtualenv-path 'current)
-       (setq flycheck-checker 'python-pylint)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  (setq flycheck-checker 'python-pylint)
 
-       (my-common-prog)
-       (elpy-enable)
-       (elpy-mode)
-       (flycheck-mode)
-       (jedi-mode)
-       (py-yapf-enable-on-save))))
+  :init
+  (elpy-enable)
+
+  :bind (:map elpy-mode-map
+              ("C-c d" . elpy-goto-definition)
+              ("C-c x v" . elpy-refactor-extract-variable)
+              ("C-c x f" . elpy-refactor-extract-function))
+
+  :hook ((elpy-mode . (lambda ()
+                        (add-hook 'before-save-hook
+                                  'elpy-format-code nil t)))
+         (elpy-mode . flycheck-mode)
+         (elpy-mode . my-common-prog)))
