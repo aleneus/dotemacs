@@ -18,6 +18,7 @@
   (elpy-enable)
 
   :bind (:map elpy-mode-map
+              ("C-c C-d" . elpy-doc)
               ("C-c d" . elpy-goto-definition)
               ("C-c x v" . elpy-refactor-extract-variable)
               ("C-c x f" . elpy-refactor-extract-function))
