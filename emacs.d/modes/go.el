@@ -16,7 +16,8 @@
         ("C-c t" . go-test-current-test)
         ("C-c f" . go-test-current-file)
         ("C-c p" . go-test-current-project)
-        ("C-c d" . godef-jump))
+        ("C-c d" . godef-jump)
+        ("C-c i" . lsp-goto-implementation))
 
   :hook
   (go-mode
