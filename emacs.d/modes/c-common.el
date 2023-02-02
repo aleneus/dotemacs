@@ -57,3 +57,5 @@
   (my-flycheck-rtags-setup))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; in emacs do after all: irony-install-server
