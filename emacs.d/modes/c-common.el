@@ -14,6 +14,7 @@
   (require 'company-irony)
   (require 'company-irony-c-headers)
   (require 'flycheck-rtags)
+  (require 'company-rtags)
   (require 'irony)
   (require 'rtags)
 
