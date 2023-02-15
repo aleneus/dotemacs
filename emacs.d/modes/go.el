@@ -17,6 +17,7 @@
         ("C-c f" . go-test-current-file)
         ("C-c p" . go-test-current-project)
         ("C-c d" . godef-jump)
+        ("C-c r" . lsp-find-references)
         ("C-c i" . lsp-goto-implementation))
 
   :hook
