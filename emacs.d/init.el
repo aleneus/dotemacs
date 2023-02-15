@@ -44,3 +44,6 @@
 (load "~/.emacs.d/modes/rst.el")
 (load "~/.emacs.d/modes/feature.el")
 (load "~/.emacs.d/modes/js2.el")
+
+(shell)
+(delete-other-windows)
