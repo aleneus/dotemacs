@@ -4,4 +4,4 @@
 # key: dv
 # description: print debug message with value
 # --
-log.Println("DEBUG: $1 =", $1) // TODO: stash
+fmt.Println("DEBUG: $1 =", $1) // TODO: stash

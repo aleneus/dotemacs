@@ -4,4 +4,4 @@
 # key: dh
 # description: print i'm here message
 # --
-log.Println("DEBUG: I'm here") // TODO: stash
+fmt.Println("DEBUG: I'm here") // TODO: stash
