@@ -27,6 +27,3 @@
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
-
-(require 'memento-mori)
-(memento-mori-mode)
