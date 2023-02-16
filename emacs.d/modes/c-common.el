@@ -59,4 +59,11 @@
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
-;; in emacs do after all: irony-install-server
+;; in emacs do after all:
+
+;; 1. irony-install-server
+;; 2. rtags-install
+;;    If problem (from stackoverflow):
+;;    "I've fixed issue just editing value of rtags-package-version to
+;;    2.38 in rtags.el and M-x byte-recompile-directory. You need to
+;;    make a new release in this repository"
