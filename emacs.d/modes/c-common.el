@@ -8,6 +8,7 @@
   (setq-local flycheck-highlighting-mode nil)
   (setq-local flycheck-check-syntax-automatically nil))
 
+
 (defun my-c-mode-common-hook ()
   (my-common-prog)
 
@@ -15,17 +16,21 @@
   (require 'cmake-ide)
   (require 'company-irony)
   (require 'company-irony-c-headers)
-  (require 'flycheck-rtags)
+  (require 'company)
   (require 'company-rtags)
+  (require 'flycheck-rtags)
   (require 'irony)
   (require 'rtags)
+
+  (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
+                                           (clang-format-buffer))))
 
   (setq rtags-completions-enabled t)
   (eval-after-load 'company
     '(add-to-list
       'company-backends 'company-rtags))
-  (setq rtags-autostart-diagnostics t)
-  (rtags-enable-standard-keybindings)
+  ;; (setq rtags-autostart-diagnostics t)
+  ;; (rtags-enable-standard-keybindings)
 
   (defun my-irony-mode-hook ()
     (define-key irony-mode-map [remap completion-at-point]
@@ -49,18 +54,15 @@
     '(add-to-list
       'company-backends '(company-irony-c-headers company-irony)))
 
-  (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
-                                           (clang-format-buffer))))
+  (local-set-key (kbd "C-c d") 'rtags-find-symbol-at-point)
+  (local-set-key (kbd "C-c r") 'rtags-find-references)
 
   (cmake-ide-setup)
-
   (irony-mode)
   (company-mode)
   (flycheck-mode)
   (my-flycheck-rtags-setup)
-
-  (local-set-key (kbd "C-c d") 'rtags-find-symbol)
-  (local-set-key (kbd "C-c r") 'rtags-find-references))
+)
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
