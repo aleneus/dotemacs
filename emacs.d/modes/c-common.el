@@ -1,3 +1,5 @@
+;; https://syamajala.github.io/c-ide.html
+
 (defun my-flycheck-rtags-setup ()
   (require 'flycheck)
   (require 'rtags)
@@ -55,7 +57,10 @@
   (irony-mode)
   (company-mode)
   (flycheck-mode)
-  (my-flycheck-rtags-setup))
+  (my-flycheck-rtags-setup)
+
+  (local-set-key (kbd "C-c d") 'rtags-find-symbol)
+  (local-set-key (kbd "C-c r") 'rtags-find-references))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
