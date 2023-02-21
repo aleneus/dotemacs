@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: testfile
+# key: testfile
+# --
+#include <gtest/gtest.h>
+
+#include "$1.h"
+
+TEST($2, Touch)
+{
+    // TODO: implement
+}
