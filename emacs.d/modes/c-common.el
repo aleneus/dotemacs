@@ -66,6 +66,8 @@
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 ;; in emacs do after all:
 
 ;; 1. irony-install-server
