@@ -16,9 +16,7 @@
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("gnu-devel" . "https://elpa.gnu.org/devel/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-        ("melpa" . "https://melpa.org/packages/")
-        ("elpa_local" . "/home/apopov/emacs-pkgs/elpa")
-        ("melpa_local" . "/home/apopov/emacs-pkgs/melpa")))
+        ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 ;; uncomment next line if there is a problem with GPG
