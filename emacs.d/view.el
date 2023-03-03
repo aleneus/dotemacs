@@ -8,10 +8,6 @@
 ;; display time
 (display-time-mode 1)
 
-;; theme
-(require 'django-theme)
-(load-theme 'django)
-
 ;; highlight current line
 (global-hl-line-mode 1)
 (set-face-background 'highlight "#222")
