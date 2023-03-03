@@ -1,12 +1,12 @@
 ;; https://syamajala.github.io/c-ide.html
 
-(defun my-flycheck-rtags-setup ()
-  (require 'flycheck)
-  (require 'rtags)
+;; (defun my-flycheck-rtags-setup ()
+;;   (require 'flycheck)
+;;   (require 'rtags)
 
-  (flycheck-select-checker 'rtags)
-  (setq-local flycheck-highlighting-mode nil)
-  (setq-local flycheck-check-syntax-automatically nil))
+;;   (flycheck-select-checker 'rtags)
+;;   (setq-local flycheck-highlighting-mode nil)
+;;   (setq-local flycheck-check-syntax-automatically nil))
 
 
 (defun my-c-mode-common-hook ()
@@ -18,7 +18,7 @@
   (require 'company-irony-c-headers)
   (require 'company)
   (require 'company-rtags)
-  (require 'flycheck-rtags)
+  ;; (require 'flycheck-rtags)
   (require 'irony)
   (require 'rtags)
 
@@ -29,8 +29,8 @@
   (eval-after-load 'company
     '(add-to-list
       'company-backends 'company-rtags))
-  ;; (setq rtags-autostart-diagnostics t)
-  ;; (rtags-enable-standard-keybindings)
+  (setq rtags-autostart-diagnostics t)
+  (rtags-enable-standard-keybindings)
 
   (defun my-irony-mode-hook ()
     (define-key irony-mode-map [remap completion-at-point]
@@ -60,8 +60,9 @@
   (cmake-ide-setup)
   (irony-mode)
   (company-mode)
-  (flycheck-mode)
-  (my-flycheck-rtags-setup)
+  ;; (flycheck-mode)
+  ;; (my-flycheck-rtags-setup)
+  (rtags-start-process-unless-running)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
