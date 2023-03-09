@@ -21,6 +21,7 @@
   ;; (require 'flycheck-rtags)
   (require 'irony)
   (require 'rtags)
+  (require 'highlight-doxygen)
 
   (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
                                            (clang-format-buffer))))
@@ -63,6 +64,7 @@
   ;; (flycheck-mode)
   ;; (my-flycheck-rtags-setup)
   (rtags-start-process-unless-running)
+  (highlight-doxygen-mode)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
