@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: dv
+# key: dv
+# --
+message("****")
+message($\{$1\})
+message("****")
