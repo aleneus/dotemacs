@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: s
+# key: s
+# --
+Scenario: $1
