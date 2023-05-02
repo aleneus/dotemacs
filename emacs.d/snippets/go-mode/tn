@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: todo-now
+# key: tn
+# --
+// TODO now: $1

@@ -4,6 +4,6 @@
 # key: method
 # description: add method
 # --
-func (${1:var} *${2:Struct}) ${3:methodName}() {
+func (${1:var} *${2:Struct}) ${3:methodName}() ${4:type} {
         $0
 }
