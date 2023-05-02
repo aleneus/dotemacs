@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assert-true
+# key: at
+# --
+ASSERT_TRUE($1);
