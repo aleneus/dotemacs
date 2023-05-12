@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assert-any-throw
+# key: ath
+# --
+ASSERT_ANY_THROW(${1:action});

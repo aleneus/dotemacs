@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Field
+# key: Field
+# --
+// $1 ${3:is}.
+${1:Name} ${2:Type}

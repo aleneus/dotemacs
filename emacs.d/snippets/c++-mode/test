@@ -2,6 +2,6 @@
 # name: test
 # key: test
 # --
-TEST($1, $2) {
+TEST(${1:UnitAndFeature}, ${2:Scenario}) {
     // TODO test: implement
 }

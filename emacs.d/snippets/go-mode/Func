@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Func
+# key: Func
+# --
+// $1 ${4:does}.
+func ${1:Name}(${2:args}) (${3:returns}) {
+     $0
+}

@@ -6,7 +6,7 @@
 
 #include "$1.h"
 
-TEST($2, Touch)
+TEST(${2:Unit}, Touch)
 {
     // TODO: implement
 }
