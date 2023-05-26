@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: errors-new
+# key: en
+# --
+err${1:Name} := errors.New("${2:text}")

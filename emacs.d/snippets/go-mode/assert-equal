@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: tef {}
-# key: tef
+# name: assert-equal
+# key: aeq
 # description: compare values in test
 # --
 if ${1:eq} != ${2:req} {

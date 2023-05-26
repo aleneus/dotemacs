@@ -5,5 +5,5 @@
 # description: return error
 # --
 if err != nil {
-   return $1, err
+   return $1, fmt.Errorf("${2:prefix}: %w", err)
 }
