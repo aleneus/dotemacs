@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: dvi
-# key: dvi
-# group: Python 3
-# description: Debug print and wait input
-# --
-print("DEBUG: $1 =", $1)  # TODO: stash
-input()  # TODO: stash
