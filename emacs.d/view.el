@@ -1,6 +1,6 @@
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-(add-to-list 'default-frame-alist '(alpha . (95 . 90)))
+;; (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
+;; (add-to-list 'default-frame-alist '(alpha . (95 . 90)))
 
 ;; highlight brackets
 (show-paren-mode 1)
