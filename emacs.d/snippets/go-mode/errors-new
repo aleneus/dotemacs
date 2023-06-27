@@ -2,4 +2,4 @@
 # name: errors-new
 # key: en
 # --
-err${1:Name} := errors.New("${2:text}")
+var err${1:Name} = errors.New("${2:text}")

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: benchmark
+# key: bench
+# description: benchmark function
+# --
+func Benchmark${1:Name}(b *testing.B) {
+     $0
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: assert-no-error
+# key: anerr
+# --
+if err != nil {
+   t.Error(err)
+}

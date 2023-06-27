@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: assert-not-equal
+# key: aneq
+# description: compare values in test
+# --
+if ${1:eq} == ${2:req} {
+     t.Fatal($1)
+}
