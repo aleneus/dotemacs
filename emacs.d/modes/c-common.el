@@ -10,13 +10,14 @@
 
   ;; advanced
   (require 'clang-format)
-  (require 'cmake-ide)
-  (require 'company)
   (require 'flycheck)
+  (require 'company)
+  (require 'cmake-ide)
 
   (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
   (flycheck-mode)
 
+  (require 'rtags) ;; apt get install rtags
   (cmake-ide-setup)
 
   (setq company-idle-delay 0)
