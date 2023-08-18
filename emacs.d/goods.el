@@ -22,6 +22,8 @@
 (setq dired-sidebar-theme 'vscode)
 (setq dired-listing-switches "-lXGh --group-directories-first")
 (setq dired-sidebar-use-custom-font t)
+(setq dired-sidebar-width 30)
+(setq dired-sidebar-use-one-instance t)
 
 (global-set-key [f9] 'dired-sidebar-toggle-sidebar)
 
