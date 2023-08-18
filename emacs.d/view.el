@@ -10,7 +10,7 @@
 
 ;; highlight current line
 (global-hl-line-mode 1)
-(set-face-background 'highlight "#222")
+(set-face-background 'highlight "#303030")
 (set-face-foreground 'highlight nil)
 
 ;; scroll

@@ -16,11 +16,14 @@
   :init (global-set-key (kbd "C-c m c") 'mc/edit-lines))
 
 ;; file navigation
-(require 'direx)
+(require 'dired-sidebar)
+(require 'vscode-icon)
 
-(push '(direx:direx-mode :position left :width 40 :dedicated t)
-      popwin:special-display-config)
-(global-set-key [f9] 'direx:jump-to-directory-other-window)
+(setq dired-sidebar-theme 'vscode)
+(setq dired-listing-switches "-lXGh --group-directories-first")
+(setq dired-sidebar-use-custom-font t)
+
+(global-set-key [f9] 'dired-sidebar-toggle-sidebar)
 
 ;; dictionary
 (use-package dictionary
