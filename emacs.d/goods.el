@@ -24,6 +24,7 @@
 (setq dired-sidebar-use-custom-font t)
 (setq dired-sidebar-width 30)
 (setq dired-sidebar-use-one-instance t)
+(setq dired-sidebar-close-sidebar-on-file-open t)
 
 (global-set-key [f9] 'dired-sidebar-toggle-sidebar)
 
