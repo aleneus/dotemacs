@@ -45,3 +45,4 @@
 
 (shell)
 (delete-other-windows)
+(put 'dired-find-alternate-file 'disabled nil)

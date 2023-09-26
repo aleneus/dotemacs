@@ -16,17 +16,22 @@
   :init (global-set-key (kbd "C-c m c") 'mc/edit-lines))
 
 ;; file navigation
-(require 'dired-sidebar)
-(require 'vscode-icon)
+(require 'dired-subtree)
+(use-package dired
+  :bind (:map dired-mode-map
+              ("<tab>" . dired-subtree-insert)
+              ("<C-tab>" . dired-subtree-remove)))
 
-(setq dired-sidebar-theme 'vscode)
-(setq dired-listing-switches "-lXGh --group-directories-first")
-(setq dired-sidebar-use-custom-font t)
-(setq dired-sidebar-width 30)
-(setq dired-sidebar-use-one-instance t)
-(setq dired-sidebar-close-sidebar-on-file-open t)
+;; (require 'dired-sidebar)
+;; (require 'vscode-icon)
 
-(global-set-key [f9] 'dired-sidebar-toggle-sidebar)
+;; (setq dired-sidebar-theme 'nerd)
+;; (setq dired-listing-switches "-lXGh --group-directories-first")
+;; (setq dired-sidebar-use-custom-font t)
+;; (setq dired-sidebar-width 30)
+;; (setq dired-sidebar-use-one-instance t)
+;; (setq dired-sidebar-close-sidebar-on-file-open t)
+;; (global-set-key [f9] 'dired-sidebar-toggle-sidebar)
 
 ;; dictionary
 (use-package dictionary
