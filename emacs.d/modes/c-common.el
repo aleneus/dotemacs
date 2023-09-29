@@ -1,27 +1,27 @@
 (defun my-c-mode-common-hook ()
   (my-common-prog)
 
-  ;; minimal
-  (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
-                                           (clang-format-buffer))))
+  ;; minimal, simple
+  (require 'clang-format)
 
   (require 'highlight-doxygen)
   (highlight-doxygen-mode)
 
-  ;; advanced
-  (require 'clang-format)
-  (require 'flycheck)
-  (require 'company)
-  (require 'cmake-ide)
+  (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
+                                           (clang-format-buffer))))
 
+  (require 'flycheck)
   (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
   (flycheck-mode)
 
-  (require 'rtags) ;; apt get install rtags
-  (cmake-ide-setup)
-
+  (require 'company)
   (setq company-idle-delay 0)
   (company-mode)
+
+  ;; advanced
+  ;; (require 'cmake-ide)
+  ;; (require 'rtags) ;; apt get install rtags
+  ;; (cmake-ide-setup)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
