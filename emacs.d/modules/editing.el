@@ -1,12 +1,12 @@
-;; transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-;; (add-to-list 'default-frame-alist '(alpha . (95 . 90)))
+(global-set-key (kbd "C-h") 'replace-string)
+(global-set-key (kbd "C-'") 'comment-region)
+(global-set-key (kbd "C-M-'") 'uncomment-region)
+(global-set-key [f3] 'kmacro-start-macro)
+(global-set-key [f4] 'kmacro-end-macro)
+(global-set-key [f5] 'call-last-kbd-macro)
 
 ;; highlight brackets
 (show-paren-mode 1)
-
-;; display time
-(display-time-mode 1)
 
 ;; highlight current line
 (global-hl-line-mode 1)
@@ -16,10 +16,6 @@
 ;; scroll
 (require 'smooth-scrolling)
 (smooth-scrolling-mode)
-
-;; pretty show modes
-(require 'mode-icons)
-(mode-icons-mode)
 
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
