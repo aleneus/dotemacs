@@ -16,10 +16,10 @@
   (:map go-mode-map
         ("C-c t" . go-test-current-test)
         ("C-c f" . go-test-current-file)
-        ("C-c p" . go-test-current-project)
         ("C-c d" . lsp-find-definition)
         ("C-c r" . lsp-find-references)
-        ("C-c i" . lsp-goto-implementation))
+        ("C-c i" . lsp-goto-implementation)
+        ("C-c n" . lsp-rename))
 
   :hook
   (go-mode

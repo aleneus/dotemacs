@@ -10,3 +10,5 @@
 
 ;; uncomment next line if there is a problem with GPG
 ;; (setq package-check-signature nil)
+
+(require 'use-package)
