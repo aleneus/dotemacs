@@ -13,9 +13,5 @@
 (set-face-background 'highlight "#303030")
 (set-face-foreground 'highlight nil)
 
-;; scroll
-(require 'smooth-scrolling)
-(smooth-scrolling-mode)
-
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)

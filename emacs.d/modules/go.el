@@ -24,7 +24,7 @@
   :hook
   (go-mode
    . (lambda ()
-       (my-common-prog)
+       (common-prog)
 
        (setq tab-width 4)
        (setq indent-tabs-mode t)

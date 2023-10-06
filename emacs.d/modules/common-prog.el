@@ -1,4 +1,5 @@
 (require 'use-package)
+(require 'flyspell)
 
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
@@ -9,20 +10,21 @@
 ;; fci
 (use-package fill-column-indicator
   :ensure t
-  :config (setq fci-rule-column 79))
+  :config
+  (setq fci-rule-column 79)
+  (setq fci-rule-width 3))
 
 ;; snippets
 (use-package yasnippet
   :ensure t
   :config (yas-global-mode))
 
-(defun my-common-prog ()
-  (add-hook 'before-save-hook 'whitespace-cleanup)
-  (linum-mode)
+(defun common-prog ()
   (fci-mode)
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+  (display-line-numbers-mode)
 
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 
-  (flyspell-prog-mode)
-)
+  (flyspell-prog-mode))

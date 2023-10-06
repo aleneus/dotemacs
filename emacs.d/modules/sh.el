@@ -1,4 +1,4 @@
 (defun my-sh-mode-hook ()
-  (my-common-prog))
+  (common-prog))
 
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)

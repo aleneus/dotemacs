@@ -1,4 +1,4 @@
 (defun my-java-hook ()
-  (my-common-prog))
+  (common-prog))
 
 (add-hook 'java-mode-hook 'my-java-hook)

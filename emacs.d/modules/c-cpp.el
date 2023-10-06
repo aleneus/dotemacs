@@ -1,16 +1,15 @@
+(require 'clang-format)
+(require 'highlight-doxygen)
+(require 'flycheck)
+
 (defun my-c-mode-common-hook ()
-  (my-common-prog)
+  (common-prog)
 
-  ;; minimal, simple
-  (require 'clang-format)
-
-  (require 'highlight-doxygen)
   (highlight-doxygen-mode)
 
   (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
                                            (clang-format-buffer))))
 
-  (require 'flycheck)
   (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
   (flycheck-mode)
 
@@ -18,7 +17,7 @@
   (setq company-idle-delay 0)
   (company-mode)
 
-  ;; advanced
+  ;; ;; advanced
   ;; (require 'cmake-ide)
   ;; (require 'rtags) ;; apt get install rtags
   ;; (cmake-ide-setup)

@@ -5,7 +5,6 @@
 
   :config
   (require 'flycheck)
-  (require 'ac-js2)
 
   (setq elpy-rpc-python-command "python3")
   (setq elpy-rpc-virtualenv-path 'current)
@@ -27,4 +26,4 @@
                         (add-hook 'before-save-hook
                                   'elpy-format-code nil t)))
          (elpy-mode . flycheck-mode)
-         (elpy-mode . my-common-prog)))
+         (elpy-mode . common-prog)))

@@ -1,4 +1,4 @@
 (defun my-feature-mode-hook ()
-  (my-common-prog))
+  (common-prog))
 
 (add-hook 'feature-mode-hook 'my-feature-mode-hook)
