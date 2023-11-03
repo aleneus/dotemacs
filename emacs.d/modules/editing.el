@@ -8,10 +8,5 @@
 ;; highlight brackets
 (show-paren-mode 1)
 
-;; highlight current line
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#303030")
-(set-face-foreground 'highlight nil)
-
 ;; prefer spaces by default
 (setq-default indent-tabs-mode nil)
