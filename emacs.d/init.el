@@ -14,7 +14,7 @@
 (load "~/.emacs.d/modules/packages.el")
 
 (load "~/.emacs.d/modules/scrolling.el")
-(load "~/.emacs.d/modules/icons.el")
+;; (load "~/.emacs.d/modules/icons.el")
 (load "~/.emacs.d/modules/popwin.el")
 (load "~/.emacs.d/modules/navigation.el")
 
