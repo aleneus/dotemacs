@@ -25,6 +25,6 @@
 
   :hook ((elpy-mode . (lambda ()
                         (add-hook 'before-save-hook
-                                  'py-yapf-buffer nil t)))
+                                  'elpy-format-code nil t)))
          (elpy-mode . flycheck-mode)
          (elpy-mode . common-prog)))
