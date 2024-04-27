@@ -10,12 +10,12 @@
   (add-hook 'before-save-hook (lambda () (when (memq major-mode '(c-mode c++-mode))
                                            (clang-format-buffer))))
 
-  (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
-  (flycheck-mode)
+  ;; (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
+  ;; (flycheck-mode)
 
-  (require 'company)
-  (setq company-idle-delay 0)
-  (company-mode)
+  ;; (require 'company)
+  ;; (setq company-idle-delay 0)
+  ;; (company-mode)
 
   ;; ;; advanced
   ;; (require 'cmake-ide)
