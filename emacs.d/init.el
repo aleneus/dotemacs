@@ -7,8 +7,8 @@
 (load "~/.emacs.d/modules/gui.el")
 (load "~/.emacs.d/modules/backup.el")
 (load "~/.emacs.d/modules/editing.el")
+(load "~/.emacs.d/modules/auto-complete.el")
 (load "~/.emacs.d/modules/ffap.el")
-
 
 ;; Other settings with additional packages
 (load "~/.emacs.d/modules/packages.el")
