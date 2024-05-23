@@ -3,6 +3,7 @@
 
 (defun my-text-hook ()
   (setq indent-tabs-mode nil)
-  (flyspell-mode))
+  (flyspell-mode)
+  (my-complete))
 
 (add-hook 'text-mode-hook 'my-text-hook)

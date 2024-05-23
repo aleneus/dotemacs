@@ -7,7 +7,6 @@
 (load "~/.emacs.d/modules/gui.el")
 (load "~/.emacs.d/modules/backup.el")
 (load "~/.emacs.d/modules/editing.el")
-(load "~/.emacs.d/modules/auto-complete.el")
 (load "~/.emacs.d/modules/ffap.el")
 
 ;; Other settings with additional packages
@@ -18,14 +17,15 @@
 (load "~/.emacs.d/modules/popwin.el")
 (load "~/.emacs.d/modules/navigation.el")
 
-
-;; Modes for writing code
+;; Dependencies for other moduled
+(load "~/.emacs.d/modules/auto-complete.el")
 (load "~/.emacs.d/modules/common-prog.el")
 
+;; Modes for writing code
+(load "~/.emacs.d/modules/lisp.el")
 (load "~/.emacs.d/modules/c-cpp.el")
 (load "~/.emacs.d/modules/go.el")
 (load "~/.emacs.d/modules/python.el")
-(load "~/.emacs.d/modules/lisp.el")
 (load "~/.emacs.d/modules/json.el")
 (load "~/.emacs.d/modules/java.el")
 (load "~/.emacs.d/modules/latex.el")

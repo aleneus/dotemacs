@@ -27,4 +27,5 @@
   (hs-minor-mode)
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+  (my-complete))

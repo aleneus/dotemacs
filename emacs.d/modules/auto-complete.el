@@ -1,6 +1,11 @@
+;; setups auto-complete and defines the function to switch on.
+
 (require 'auto-complete)
 
-(setq ac-auto-start 4)
-(global-set-key "\M-/" 'auto-complete)
+(defun my-complete ()
+  (setq ac-auto-start nil)
+  (define-key ac-mode-map (kbd "M-<tab>") 'auto-complete)
+  (define-key ac-mode-map (kbd "C-<space>") 'auto-complete)
+  (setq ac-menu-height 30)
 
-(global-auto-complete-mode t)
+  (auto-complete-mode))
