@@ -25,6 +25,7 @@
 
   :hook ((elpy-mode . (lambda ()
                         (add-hook 'before-save-hook
-                                  'py-yapf-buffer)))
+                                  ;; IMPORTANT! pip3 install yapf=0.40.1
+                                  'elpy-format-code nil t)))
          (elpy-mode . flycheck-mode)
          (elpy-mode . common-prog)))
