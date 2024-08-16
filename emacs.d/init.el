@@ -37,5 +37,9 @@
 (load "~/.emacs.d/modules/feature.el")
 (load "~/.emacs.d/modules/js2.el")
 
+;; org modes
+(load "~/.emacs.d/modules/org.el")
+(load "~/.emacs.d/modules/roam.el")
+
 (shell)
 (delete-other-windows)
