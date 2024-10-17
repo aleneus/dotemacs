@@ -1,3 +1,5 @@
+;; apt install aspell aspell-ru
+
 (require 'flyspell)
 (require 'flyspell-popup)
 
