@@ -2,6 +2,7 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 
+
 (require 'dired-subtree)
 
 (use-package dired

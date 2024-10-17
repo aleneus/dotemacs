@@ -1,12 +1,13 @@
+;; IMPORTANT! pip3 install yapf=0.40.1
+
 (require 'use-package)
 (require 'py-yapf)
+(require 'flycheck)
 
 (use-package elpy
   :ensure t
 
   :config
-  (require 'flycheck)
-
   (setq elpy-rpc-python-command "python3")
   (setq elpy-rpc-virtualenv-path 'current)
 
@@ -25,7 +26,6 @@
 
   :hook ((elpy-mode . (lambda ()
                         (add-hook 'before-save-hook
-                                  ;; IMPORTANT! pip3 install yapf=0.40.1
                                   'elpy-format-code nil t)))
          (elpy-mode . flycheck-mode)
          (elpy-mode . common-prog)))

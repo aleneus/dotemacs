@@ -1,5 +1,7 @@
 (require 'use-package)
 (require 'flyspell)
+(require 'fill-column-indicator)
+(require 'yasnippet)
 
 ;; flyspell-prog (for checking comments)
 (defun my-flyspell-prog-hook ()
