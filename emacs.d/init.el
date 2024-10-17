@@ -13,7 +13,6 @@
 ;; (load "~/.emacs.d/modules/packages.el")
 ;; (load "~/.emacs.d/modules/scrolling.el")
 ;; (load "~/.emacs.d/modules/icons.el")
-;; (load "~/.emacs.d/modules/popwin.el")
 ;; (load "~/.emacs.d/modules/navigation.el")
 
 ;; Writing text
@@ -27,7 +26,6 @@
 
 ;; Writing code
 ;; (load "~/.emacs.d/modules/common-prog.el")
-;; (load "~/.emacs.d/modules/auto-complete.el")
 ;; (load "~/.emacs.d/modules/lisp.el")
 ;; (load "~/.emacs.d/modules/c-cpp.el")
 ;; (load "~/.emacs.d/modules/go.el")
