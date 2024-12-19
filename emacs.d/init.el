@@ -31,6 +31,7 @@
 ;; (load "~/.emacs.d/modules/go.el")
 ;; (load "~/.emacs.d/modules/python.el")
 ;; (load "~/.emacs.d/modules/sh.el")
+;; (load "~/.emacs.d/modules/octave.el")
 ;; (load "~/.emacs.d/modules/java.el")
 ;; (load "~/.emacs.d/modules/js2.el")
 
