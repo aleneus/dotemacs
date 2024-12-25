@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: assert-error
-# key: aerr
-# --
-if err == nil {
-   t.Error("nil")
-}

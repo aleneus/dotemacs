@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: assert-error-is
-# key: aerris
-# --
-if !errors.Is(err, $1) {
-        t.Fatal(err)
-}

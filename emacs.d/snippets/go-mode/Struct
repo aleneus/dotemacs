@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Struct
-# key: Struct
-# --
-// $1 ${2:is}.
-type ${1:Name} struct {
-     ${3:Field} ${4:Type}
-     $0
-}

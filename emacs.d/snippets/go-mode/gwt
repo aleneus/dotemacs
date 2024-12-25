@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: gwt
-# key: gwt
-# description: add given-when-then comments
-# --
-// Given $1
-// When $2
-// Then $3

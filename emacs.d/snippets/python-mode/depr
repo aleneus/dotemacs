@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: depr
-# key: depr
-# group: Python 3
-# description: Print deprecation warning
-# --
-warn("$1 is deprecated, use $2", FutureWarning)

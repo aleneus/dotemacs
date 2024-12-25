@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Call
-# key: Call
-# --
-func (${1:x} *${2:class}) Call(${3:args}) ${4:res} {
-     $0
-}

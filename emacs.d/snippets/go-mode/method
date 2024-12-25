@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
-# name: method
-# key: method
-# description: add method
-# --
-func (${1:var} *${2:Struct}) ${3:methodName}() ${4:type} {
-        $0
-}
