@@ -26,6 +26,7 @@
 
 ;; Writing code
 ;; (load "~/.emacs.d/modules/common-prog.el")
+;; (load "~/.emacs.d/modules/sideline.el")
 ;; (load "~/.emacs.d/modules/lisp.el")
 ;; (load "~/.emacs.d/modules/c-cpp.el")
 ;; (load "~/.emacs.d/modules/go.el")
