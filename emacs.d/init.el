@@ -30,7 +30,8 @@
 ;; (load "~/.emacs.d/modules/lisp.el")
 ;; (load "~/.emacs.d/modules/c-cpp.el")
 ;; (load "~/.emacs.d/modules/go.el")
-;; (load "~/.emacs.d/modules/python.el")
+;; (load "~/.emacs.d/modules/python-lsp.el") ;; or
+;; (load "~/.emacs.d/modules/python-elpy.el")
 ;; (load "~/.emacs.d/modules/sh.el")
 ;; (load "~/.emacs.d/modules/octave.el")
 ;; (load "~/.emacs.d/modules/java.el")
