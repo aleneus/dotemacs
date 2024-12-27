@@ -2,8 +2,8 @@
 # name: testclass
 # key: testclass
 # group: Testing
-# name: define test class
+# name: testclass
 # --
 class Test${1:Feature}(unittest.TestCase):
-    def test_${2:scenario}(self):
-        $0
+
+    pass
