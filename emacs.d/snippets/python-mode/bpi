@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bpi
+# key: bpi
+# --
+import pdb  # TODO now: stash

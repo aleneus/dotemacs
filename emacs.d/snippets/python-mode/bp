@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bp
+# key: bp
+# --
+pdb.set_trace()  # TODO now: stash
