@@ -16,11 +16,13 @@
   (:map python-mode-map
         ("C-c d" . lsp-find-definition)
         ("C-c r" . lsp-find-references)
-        ("C-c n" . lsp-rename)
-        ("C-c y" . yapfify-buffer))
+        ("C-c n" . lsp-rename))
 
   :hook
-  ((python-mode . common-prog)
+  ((python-mode . (lambda ()
+                    (add-hook 'before-save-hook
+                              'yapfify-buffer)))
+   (python-mode . common-prog)
    (python-mode . lsp)
    (python-mode . flycheck-mode)))
 
