@@ -2,6 +2,5 @@
 # contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: tr {}
 # key: tr
-# description: add "TODO restore" record
 # --
-// TODO now: restore
+// TODO now: remove
