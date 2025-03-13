@@ -1,16 +1,14 @@
 ;; add to .bashrc:
 ;; export PATH=$PATH:$(go env GOPATH)/bin
 
-(require 'go-mode)
-
-(require 'use-package)
+(require 'company)
 (require 'flycheck)
 (require 'go-eldoc)
 (require 'go-snippets)
 (require 'gotest)
-(require 'company)
 (require 'lsp-mode)
 (require 'lsp-ui)
+(require 'use-package)
 
 (use-package go-mode
   :bind
@@ -22,30 +20,25 @@
         ("C-c i" . lsp-goto-implementation)
         ("C-c n" . lsp-rename)))
 
-(defun my-go-mode-hook ()
-  (common-prog)
-
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t)
-
-  (setq-default flycheck-disabled-checkers '(go-vet))
-
-  (flycheck-mode)
-  (yas-minor-mode)
-  (go-eldoc-setup)
-  (lsp-deferred))
-
-(defun my-go-mode-hook-lite ()
+(defun my-go-mode-hook-base ()
   (common-prog)
 
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   
   (add-hook 'before-save-hook 'gofmt-before-save)
-  (yas-minor-mode)
-  (flycheck-mode))
+  
+  (setq-default flycheck-disabled-checkers '(go-vet))
+  
+  (flycheck-mode)
+  (yas-minor-mode))
+
+(defun my-go-mode-hook ()
+  (my-go-mode-hook-base)
+  
+  (add-hook 'before-save-hook #'lsp-organize-imports t t)
+
+  (go-eldoc-setup)
+  (lsp-deferred))
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
