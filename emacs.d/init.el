@@ -2,9 +2,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Uncomment if problem with signature
-;; (setq package-check-signature nil)
-
 ;; Settings that do not require the installation of
 ;; additional packages
 (load "~/.emacs.d/modules/gui.el")
@@ -12,8 +9,10 @@
 (load "~/.emacs.d/modules/editing.el")
 (load "~/.emacs.d/modules/ffap.el")
 
-;; Other settings with additional packages
+;; Repositories
 ;; (load "~/.emacs.d/modules/packages.el")
+
+;; Other settings with additional packages
 ;; (load "~/.emacs.d/modules/scrolling.el")
 ;; (load "~/.emacs.d/modules/icons.el")
 ;; (load "~/.emacs.d/modules/navigation.el")
@@ -27,18 +26,37 @@
 ;; (load "~/.emacs.d/modules/latex.el")
 ;; (load "~/.emacs.d/modules/graphviz.el")
 
-;; Writing code
+;; Common for writing code
 ;; (load "~/.emacs.d/modules/common-prog.el")
 ;; (load "~/.emacs.d/modules/sideline.el")
+
+;; Emacs Lisp
 ;; (load "~/.emacs.d/modules/lisp.el")
+
+;; C and C++
 ;; (load "~/.emacs.d/modules/c-cpp.el")
+
+;; Golang
 ;; (load "~/.emacs.d/modules/go.el")
+
+;; Python
 ;; (load "~/.emacs.d/modules/python-lsp.el") ;; or
-;; (load "~/.emacs.d/modules/python-elpy.el")
+;; (load "~/.emacs.d/modules/python-elpy.el") ;; or
+;; (load "~/.emacs.d/modules/python-lite.el")
+
+;; Bash
 ;; (load "~/.emacs.d/modules/sh.el")
+
+;; Octave
 ;; (load "~/.emacs.d/modules/octave.el")
+
+;; Java
 ;; (load "~/.emacs.d/modules/java.el")
+
+;; JavaScript
 ;; (load "~/.emacs.d/modules/js2.el")
+
+;; Graphviz
 (load "~/.emacs.d/modules/graphviz.el")
 
 ;; Telegram
