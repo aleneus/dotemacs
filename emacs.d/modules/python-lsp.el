@@ -21,10 +21,13 @@
   :hook
   ((python-mode . (lambda ()
                     (add-hook 'before-save-hook
-                              'yapfify-buffer)))
+                              'yapfify-buffer
+                              nil
+                              t)))
    (python-mode . common-prog)
-   (python-mode . lsp)
+   (python-mode . lsp-deferred)
    (python-mode . flycheck-mode)))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode))
