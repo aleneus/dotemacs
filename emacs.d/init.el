@@ -24,7 +24,6 @@
 ;; (load "~/.emacs.d/modules/rst.el")
 ;; (load "~/.emacs.d/modules/feature.el")
 ;; (load "~/.emacs.d/modules/latex.el")
-;; (load "~/.emacs.d/modules/graphviz.el")
 
 ;; Common for writing code
 ;; (load "~/.emacs.d/modules/common-prog.el")
