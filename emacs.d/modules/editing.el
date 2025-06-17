@@ -8,5 +8,6 @@
 ;; highlight brackets
 (show-paren-mode 1)
 
-;; prefer spaces by default
-(setq-default indent-tabs-mode nil)
+;; tabs or spaces
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
