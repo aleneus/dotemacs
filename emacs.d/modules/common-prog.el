@@ -1,7 +1,7 @@
 (use-package flyspell
   :ensure t
   :hook (flyspell-prog-mode . (lambda ()
-							   (ispell-change-dictionary "english")))
+								(ispell-change-dictionary "english"))))
 
 (use-package fill-column-indicator
   :ensure t
