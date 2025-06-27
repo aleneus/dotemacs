@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: tq
 # key: tq
+# group: TODO
+# description: think (question) issue
 # --
 # TODO now: ?

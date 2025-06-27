@@ -1,10 +1,5 @@
 ;; pip install 'python-lsp-server[all]'
-
-(require 'lsp-mode)
-(require 'lsp-ui)
-(require 'python-mode)
-(require 'flycheck)
-(require 'yapfify)
+;; pip install pylint
 
 (use-package python-mode
   :config
@@ -14,20 +9,28 @@
 
   :bind
   (:map python-mode-map
-        ("C-c d" . lsp-find-definition)
-        ("C-c r" . lsp-find-references)
-        ("C-c n" . lsp-rename))
+		("C-c d" . xref-find-definitions)
+		("C-c r" . xref-find-references)
+		("C-c n" . eglot-rename))
 
   :hook
-  ((python-mode . (lambda ()
-                    (add-hook 'before-save-hook
-                              'yapfify-buffer
-                              nil
-                              t)))
-   (python-mode . common-prog)
-   (python-mode . lsp-deferred)
-   (python-mode . flycheck-mode)))
+  (python-mode . (lambda ()
+				   (eglot-ensure)
+				   (flycheck-mode)
+				   (add-hook 'before-save-hook 'yapfify-buffer nil t)
+				   (common-prog))))
 
-(use-package lsp-ui
-  :commands lsp-ui-mode
-  :hook (lsp-mode . lsp-ui-mode))
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs
+			   '(python-mode . ("pylsp"))))
+
+(use-package flycheck
+  :ensure t)
+
+(use-package yapfify
+  :ensure t)
+
+(use-package python-mode
+  :ensure t)

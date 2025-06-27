@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: tx
 # key: tx
+# group: TODO
+# description: extract function or class
 # --
 # TODO now: extract

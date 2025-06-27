@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: t
 # key: t
+# group: TODO
+# description: any todo issue
 # --
-# TODO now:
+# TODO now: $0

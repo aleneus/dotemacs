@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: td
 # key: td
+# group: TODO
+# description: documantation issue
 # --
 # TODO now: docs

@@ -56,10 +56,7 @@
 ;; (load "~/.emacs.d/modules/js2.el")
 
 ;; Graphviz
-(load "~/.emacs.d/modules/graphviz.el")
-
-;; Telegram
-(load "~/.emacs.d/modules/tg.el")
+;; (load "~/.emacs.d/modules/graphviz.el")
 
 ;; Org modes
 ;; (load "~/.emacs.d/modules/org.el")

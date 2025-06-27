@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: tn
 # key: tn
+# group: TODO
+# description: naming issue
 # --
 # TODO now: name

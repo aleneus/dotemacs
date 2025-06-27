@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
-# name: ts {}
+# name: ts
 # key: ts
+# group: TODO
+# description: restore code after some experiments
 # --
 # TODO now: restore

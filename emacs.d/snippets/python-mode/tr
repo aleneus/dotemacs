@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
-# contributer: Aleksandr Popov <aleneus@gmail.com>
 # name: tr
 # key: tr
+# group: TODO
+# description: marker for removing code
 # --
 # TODO now: remove

@@ -1,5 +1,7 @@
 # -*- mode: snippet -*-
 # name: tl
 # key: tl
+# group: TODO
+# description: localization issue
 # --
 # TODO now: translation
