@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: errdoc
+# key: errdoc
+# --
+// $1 must be returned when $2.

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributer: Aleksandr Popov <aleneus@gmail.com>
+# name: dvhex
+# key: dvhex
+# description: print debug message with value
+# --
+fmt.Println("DEBUG: $1 =", fmt.Sprintf("% x", $1)) // TODO now: stash
