@@ -1,5 +1,4 @@
 ;; sudo apt install jsonlint
-(require 'json-mode)
 
 (defun my-json-mode-hook ()
   (flycheck-mode)
@@ -8,3 +7,8 @@
   (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding))
 
 (add-hook 'json-mode-hook 'my-json-mode-hook)
+
+(use-package json-mode
+  :ensure t
+  :hook
+  (json-mode . my-json-mode-hook))

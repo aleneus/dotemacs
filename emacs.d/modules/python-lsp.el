@@ -7,6 +7,16 @@
 (use-package yapfify
   :ensure t)
 
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs
+			   '(python-mode . ("pylsp"))))
+
+(use-package company
+  :ensure t
+  :hook (python-mode . company-mode))
+
 (use-package python-mode
   :ensure t
 
@@ -25,13 +35,3 @@
 				   (define-key python-mode-map (kbd "C-c r") 'xref-find-references)
 				   (define-key python-mode-map (kbd "C-c n") 'eglot-rename)
 				   (setq comment-start "# "))))
-
-(use-package eglot
-  :ensure t
-  :config
-  (add-to-list 'eglot-server-programs
-			   '(python-mode . ("pylsp"))))
-
-(use-package company
-  :ensure t
-  :hook (python-mode . company-mode))

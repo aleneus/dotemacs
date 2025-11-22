@@ -1,12 +1,20 @@
 ;; apt install aspell aspell-ru
 
-(require 'flyspell)
-(require 'flyspell-popup)
-(require 'writegood-mode)
+(use-package flyspell
+  :ensure t)
+
+(use-package flyspell-popup
+  :ensure t)
+
+(use-package writegood-mode
+  :ensure t)
 
 (defun my-markdown-mode-hook ()
   (visual-line-mode)
   (flyspell-mode)
   (writegood-mode))
 
-(add-hook 'markdown-mode-hook 'my-markdown-mode-hook)
+(use-package markdown-mode
+  :ensure t
+  :hook
+  (markdown-mode . my-markdown-mode-hook))
