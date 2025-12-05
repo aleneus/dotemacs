@@ -37,6 +37,7 @@
 
 ;; C and C++
 ;; (load "~/.emacs.d/modules/c-cpp.el")
+;; (load "~/.emacs.d/modules/c-lite.el")
 
 ;; Golang
 ;; (load "~/.emacs.d/modules/go.el")
