@@ -9,6 +9,9 @@
 (load "~/.emacs.d/modules/editing.el")
 (load "~/.emacs.d/modules/ffap.el")
 
+;; helm
+;; (load "~/.emacs.d/modules/helm.el")
+
 ;; set level of warnings
 ;; (setq warning-minimum-level :error)
 
