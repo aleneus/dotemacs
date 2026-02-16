@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: re
+# key: re
+# description: return and wrap not nil error
+# --
+if err != nil {
+   return fmt.Errorf("$1: %w", err)
+}
