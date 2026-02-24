@@ -38,6 +38,9 @@
 ;; Emacs Lisp
 ;; (load "~/.emacs.d/modules/lisp.el")
 
+;; Haskell
+;; (load "~/.emacs.d/modules/haskell.el")
+
 ;; C and C++
 ;; (load "~/.emacs.d/modules/c-cpp.el")
 ;; (load "~/.emacs.d/modules/c-lite.el")
